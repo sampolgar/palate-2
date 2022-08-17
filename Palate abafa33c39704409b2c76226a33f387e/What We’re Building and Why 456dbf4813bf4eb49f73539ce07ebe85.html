@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>What We’re Building and Why?</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="456dbf48-13bf-4eb4-9f73-539ce07ebe85" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔨</span></div><h1 class="page-title">What We’re Building and Why?</h1></header><div class="page-body"><h1 id="5549dfba-ccfa-4934-9cd2-5c4c889a044b" class="">Empowering Wine Commerce with Technology</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f8bc8415-17f2-48e0-82b6-2c8f0e5502a9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">We’re on a mission to enable the wine industry with tools and technologies that add value to the customer experience and the supply chain</div></figure><h2 id="3c1c4e14-85fe-455d-8d82-770124a005c7" class="">Building in public</h2><p id="8f9fc738-9c84-47dd-ac48-aac65e4fffde" class="">We’re opening the “doors” to our build process. From the beginnings of our problem discovery and uncovering our the opportunities we find, through to our prototyping and software development. This project is open to your eyes and your feedback.</p><nav id="50240838-1bcc-40d4-a184-9cc55128b52a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5549dfba-ccfa-4934-9cd2-5c4c889a044b">Empowering Wine Commerce with Technology</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3c1c4e14-85fe-455d-8d82-770124a005c7">Building in public</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#546b6a29-e98a-46e9-8a60-bdec6118e7cc">Product Strategy</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9780e400-20ba-42c6-976e-aa680b2f3169">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#aeb4a98f-9e72-497d-832c-39e89df66a44">Goals</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6e3103e1-430a-4239-8425-1f6bd2f9cd8a">Principles</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#51cb9273-372e-4fb6-98ab-45fcde28f9e1">What problems are we looking to solve?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#968d948e-9213-4420-aeb9-b7ddb442d523">Why now?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6c6d31d3-283d-49b5-a418-91bc74dc8426"><strong>Wine History</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23f44766-949e-49f0-850a-86c8ca019285"><strong>Wine</strong> <strong>Industry</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5a19a08b-4880-46ba-8a1c-32bc0e71002c"><strong>Wine Infrastructure</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#69a1449f-b870-44bb-8c45-64e41aaaaf12">Lessons learned</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#aebcfbd4-8853-4c50-a364-da5b549973b9">Current Opportunities</a></div></nav><h1 id="546b6a29-e98a-46e9-8a60-bdec6118e7cc" class="">Product Strategy</h1><blockquote id="9e4ad02a-947c-427f-a00d-8434ec20dcab" class="">Welcome to our product strategy. We’ve summarized the results of our research, identifying our starting point and where we can add value to the wine industry</blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="36472add-1a14-4761-a41e-03433ae21a95"><div style="font-size:1.5em"><span class="icon">🗞️</span></div><div style="width:100%"><em>Wine is one of the oldest industries in the world, starting around 6000BC.
+The last 20 years, wine has seen a digital revolution, starting with trading marketplaces, culminating in boutique crafted, NFT-linked bottles where software and technology adds significant value to the perceived value of a wine.
+
+The industry is changing - sellers create value by incorporating authenticity and provenance measures, story telling, vineyard information, meet-the-winemaker wine-tasting, community engagement and a myriad of opportunities to add up to, and sometimes more than 100% of the bottle value as additional revenue, take Penfolds as an example.
+
+The wine flavour, aroma, and general quality is, and hopefully always will be table stakes in the success of a wine label. However, we believe technology and blockchain can increase the value and utility of wine assets. 
+
+Palate is a platform that enables wineries, distributors and end-users with the ability to link a wine bottle to the digital world on the blockchain.</em></div></figure><h2 id="9780e400-20ba-42c6-976e-aa680b2f3169" class="">Introduction</h2><p id="9f8c7597-3f4c-473a-b70f-bb2797f63e4b" class=""><mark class="highlight-purple_background">NFT&#x27;s digitally represent ownership and their technology introduces new mechanisms of provenance, ownership, authenticity, business models, trade and supply chain management.</mark> The wine industry values many of the above-mentioned characteristics though the industry&#x27;s largely missing an enabling technology.</p><p id="7bdc70eb-daf3-4203-8948-67f43861e7fa" class="">
+</p><p id="91b2e37a-b1d8-45cd-a632-17edd419eb0d" class="">NFT&#x27;s are blockchain technology which represents a significant hurdle for businesses to adopt. Palate&#x27;s platform will unblock technical hurdles by being compatible with a companies regular tech stack.</p><p id="7be639f8-6e32-478d-80d9-9f1afbfbbd18" class="">Our focus in 2022 will be </p><ol type="1" id="9f1d368c-0edd-41d8-8ea6-74307e840109" class="numbered-list" start="1"><li>learning our target market by prototyping and customer feedback</li></ol><ol type="1" id="28fbce49-6a7a-4f3a-b85e-55466bd1cc0d" class="numbered-list" start="2"><li>building the first iterations of our product and receiving feedback</li></ol><ol type="1" id="7a0432c0-4930-427c-a889-173b5af86d97" class="numbered-list" start="3"><li>signing our first customers</li></ol><p id="5e81ae31-c46a-48b9-ab9a-d3a252aa2de1" class="">
+</p><h2 id="aeb4a98f-9e72-497d-832c-39e89df66a44" class="">Goals</h2><p id="5ab3776a-8b5f-46e6-a77b-e1feb2dbe150" class="">Whilst our ambitions are high in the sky, we’re focused on validating our value proposition and debunking our assumptions.</p><p id="a1247ee7-7838-44aa-880c-fcdb9c1c7643" class="">Our key areas of focus for 2022 include</p><ul id="064e7b11-ef82-4185-ac67-d465679b4378" class="bulleted-list"><li style="list-style-type:disc"><strong>Customer discovery: </strong>iterate on 3 x product ideas</li></ul><ul id="d8c70252-3c01-4e4a-9437-dd3e7c67981b" class="bulleted-list"><li style="list-style-type:disc"><strong>Blockchain wine validation:</strong> create 2 x solutions for the industry, validated through MVP &amp; customer sign-up</li></ul><h2 id="6e3103e1-430a-4239-8425-1f6bd2f9cd8a" class="">Principles</h2><p id="1554b00c-ca55-4928-94a6-abd354f42d2b" class="">The following are guiding principles we use to evaluate and priortize Palate&#x27;s activities in its infancy as a product, these are subject to change when scaling becomes a concern:</p><p id="7177cd3b-b144-413e-b3a3-d947076745cc" class="">How do we make a product with real traction, solving a real problem that will stand the bulls and bears of crypto?</p><p id="1ec0ad59-4ed7-4db0-8876-8135eb766f31" class="">
+</p><ul id="c1cdb7e9-f63b-46bb-a775-ad2b81e8180d" class="bulleted-list"><li style="list-style-type:disc"><strong>Validation: </strong>Creating value is the main validation we are looking for - customers purchasing our product and usage. We aren’t in a hurry to create NFT’s for wine if no-one needs them.</li></ul><ul id="3de9f8d0-a39a-4a4f-bfbb-2fc3bd47edee" class="bulleted-list"><li style="list-style-type:disc"><strong>Real-traction:</strong> Cryptocurrency/Web3.0 experience bull and bear runs. Products without a fundamental utility can grow in a bull &amp; die in a bear. Palate will continually focus on finding and solving customer problems to avoid the latter </li></ul><ul id="c31b8ed2-231f-4583-b8fc-f96393fa7757" class="bulleted-list"><li style="list-style-type:disc"><strong>Easy path to purchase:</strong> we understand Palate may be the customer &amp; users first introduction to web 3.0, our goal for the customer (winemaker, etc) and user (purchaser) is to make the first listing as simple as possible</li></ul><ul id="32fd5240-87a1-4f08-af5c-2ad700b3e58a" class="bulleted-list"><li style="list-style-type:disc"><strong>First-day approach:</strong> Explain Like I&#x27;m 5 (ELI5) is our motto for product communication, how-to guides and company onboarding to help non-crypto native customers use the platform</li></ul><ul id="5cf19aae-aa60-403b-bc9b-f266867d6537" class="bulleted-list"><li style="list-style-type:disc"><strong>Utility-based approach:</strong> Web 3.0 is endless - it&#x27;s easy to be caught up in making a DAO for wine-parties, NFT&#x27;s for X and a blockchain for Y. We will focus on the customer&#x27;s use-cases and focus on providing a platform with minimal features to validate and encourage new web3.0 users </li></ul><h2 id="51cb9273-372e-4fb6-98ab-45fcde28f9e1" class="">What problems are we looking to solve?</h2><p id="6cfd303c-0373-41e3-aaf6-ae002d91710c" class="">There are a number of problems we’ve personally experienced, having an understanding of blockchain and NFT’s, we thought about ways to solve them:</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f280c667-8807-44f3-98e6-469f67e84ec9"><div style="font-size:1.5em"><span class="icon">1️⃣</span></div><div style="width:100%"><strong>Wine Futures</strong>, also known as <strong>En-Primeur</strong> is the ability to purchase wine before its bottled and released to the market. Purchasers can buy futures 2 - 3 years before release. We’ve identified a number of interesting problems
+
+1. Purchasers are sent an email confirmation/receipt of purchase and then wait for the release to receive wine. As a purchaser, you can lose the email, you can forget what you bought and which company you bought from, and you don’t easily know the total value of your purchases
+
+2. Purchasers aren’t aware of market updates that effect the price of their purchase. For example, you purchase 2020 vintage and 2021 vintage receives 99 points, the previous vintage will be worth more. Or in the unfortunate scenario there is hail in the vineyard and the vineyard loses their crop, the scarcity of their wine will increase their value
+
+3. Purchasers can’t easily trade their email certificate of ownership
+
+4. Loyal owners/purchasers may or may not be allocated following vintages
+
+5. Vineyards pay for distributors/services to sell their wine, running their own en-primeur sales/releases is often out of their knowledge/skills. Therefore, vineyards don’t realize the full value of their wine and don’t realize profits after their wine is first sold
+
+6. Vineyards can experience events that devastate their yearly revenue such as frosts, storms, scorching heat, excessive rain fires that taint the grape taste, virus’s that kill the vines in their vineyard. Due to global warming, these events are increasingly frequent. Weather derivatives are widely used in adjacent industries yet rarely used in viticulture</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c7582dff-59f2-44b2-9165-e8a8ca2b2cb7"><div style="font-size:1.5em"><span class="icon">2️⃣</span></div><div style="width:100%"><strong>Wine purchasing:</strong> many wines from the worlds famed wine regions are almost impossible to buy. Investors and traders buy through connections and leave many passionate wine drinkers out of the picture. Furthermore, many of these wines are never drunk
+
+<strong>For the buyer:</strong> how can I buy a bottle of wine and be guaranteed allocation of another bottle next year?
+<strong>For the seller:</strong> sometimes the wine is never drunk, sometimes it’s sold and traded. Winemakers want their wine to be enjoyed</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="632c225d-5277-44c7-9a04-bdc5f57a4d11"><div style="font-size:1.5em"><span class="icon">3️⃣</span></div><div style="width:100%"><strong>Wine provenance and authenticity:</strong> merchants, shops and distributors provide a guarantee to customers the wine comes from the vineyard. How true is it? Blockchain provides provenance from the source through the supply chain to the end user. Buying wine from auctions or marketplaces can’t guarantee provenance</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7b8c27de-b1b6-455f-896b-9b0cb33fd88c"><div style="font-size:1.5em"><span class="icon">4️⃣</span></div><div style="width:100%"><strong>Wine trading: </strong>wine auction houses in Australia charge up to 20% to sell, 20% to buy as well as a cellaring fee. Blockchain based p2p buying and selling can reduce the price</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="83232132-62c8-4cf3-ad66-3994288b20fb"><div style="font-size:1.5em"><span class="icon">5️⃣</span></div><div style="width:100%"><strong>Wine industry:</strong> some winemakers are selling their wine’s as NFT’s currently. <a href="https://opensea.io/collection/neldnerroad">Neldner road</a> from Australia’s Barossa Valley sells barrels directly to the public. I believe the graphic devalues the wine, and a huge improvement can be made</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bb52a998-d461-4121-8695-9b0531d37a74"><div style="font-size:1.5em"><span class="icon">6️⃣</span></div><div style="width:100%"><strong>Asset liquidity:</strong> increasing wine liquidity globally is a positive-sum game. Wine is not similar to an NFT itself. Wine cannot be consumed digitally unless users trade the rights to a wine which is stored in a storage facility</div></figure><h1 id="968d948e-9213-4420-aeb9-b7ddb442d523" class="">Why now?</h1><p id="62adeef2-1f6a-469f-b8f0-20edf25a8689" class="">By examining the history of wine from 5000 B.C. to now as well as the developments in the last 20 years, the wine industry is now seeing technology delivering value to </p><p id="ca09bca6-42ac-4a3a-9bb3-8a245fe39c72" class="">
+</p><h3 id="6c6d31d3-283d-49b5-a418-91bc74dc8426" class=""><strong>Wine History</strong></h3><p id="90be7099-8a00-4950-93ba-410ba18344c3" class="">Carbon dating confirms the first wine production around 5000 B.C. - the <a href="https://vinepair.com/wine-blog/history-wine-transport-8000-years/">wine industry is old</a>,  an industry that’s seen slow and gradual progress from first storing wine in Amphora clay pots, to transporting wine in wooden casks around the 2nd century AD, to introducing glass bottles in late 1600’s to the bottle we know having been introduced in the early 1900’s. </p><p id="79c2d4b8-527e-4ccf-b324-64f69a375169" class="">
+</p><h3 id="23f44766-949e-49f0-850a-86c8ca019285" class=""><strong>Wine</strong> <strong>Industry</strong></h3><blockquote id="d960482c-34ee-4202-bb12-dcbcf27a65b4" class="">How has the wine industry changed over the years?</blockquote><ol type="1" id="11f5d0eb-31f1-4b0b-acd4-161b920e302f" class="numbered-list" start="1"><li><strong>Consumption</strong> - grapes were grown by the Greeks and Romans, wine was made to be drunk, to get drunk. Without transport, wine was consumed wherever it was grown/produced</li></ol><ol type="1" id="4766e685-8df4-4a33-82fd-704811989a67" class="numbered-list" start="2"><li><strong>Location</strong> became important. The Romans, understanding the quality of wine from their homeland, found good quality grapes in Bordeaux around the 1st century, and then a few hundred years later in Burgundy</li></ol><ol type="1" id="113f0647-a1c7-44f8-80bd-df4d603b6879" class="numbered-list" start="3"><li><strong>Brands</strong> started in the 1700’s with the famous champagne houses such as Ruinart, Tattinger, Moet et Chandon, and Veuve Clicquot, brands that still dominate the market today</li></ol><ol type="1" id="e925500f-8b47-4413-ab94-c87155e95f7c" class="numbered-list" start="4"><li><strong>Classifications</strong> such as Grand Cru (Burgundy, 12th Century), Grand Cru Classe (Bordeaux, 1855), VDP (Germany, 1910), and (DOC (Italy, 1963), were introduced as quality standards</li></ol><ol type="1" id="a5b03901-1aed-4e48-bb85-d44bbba25df6" class="numbered-list" start="5"><li><strong>Packaging</strong> bottle weight and label design affecting the quality and price perception</li></ol><ol type="1" id="e65474de-f8f1-4c09-9ab5-c1d6b36e5405" class="numbered-list" start="6"><li><strong>Promotional activities</strong> labels, awards, shop or website placement affecting the buyers value perception</li></ol><ol type="1" id="861048e5-190c-4eb8-8973-efb9fbfeb194" class="numbered-list" start="7"><li><strong>Specialisation </strong>such as organic and biodynamic, growing/making techniques that respect the environment or wines that are expressions of terroir</li></ol><ol type="1" id="a3b9e569-1c5e-4df5-9f04-cd0e4f10a152" class="numbered-list" start="8"><li><strong>Financial Instruments </strong>weather derivatives investigated in 2007 to assist icewine producers in Canada (<a href="https://wine-economics.org/wp-content/uploads/2012/09/AAWE_WP05.pdf">source</a>)</li></ol><ol type="1" id="ee0ca272-321a-4315-ac83-ae3ee56e7f40" class="numbered-list" start="9"><li><strong>Technology </strong>we are now starting to see examples where technology is a factor for wine purchasing</li></ol><p id="c9cd6b87-bd40-4eee-b3fa-d01113baa3ab" class="">
+</p><h3 id="5a19a08b-4880-46ba-8a1c-32bc0e71002c" class=""><strong>Wine Infrastructure</strong></h3><blockquote id="e4b00a41-34da-4b41-b1f7-4ad0db0131cd" class="">Here we focus on the internet years</blockquote><ol type="1" id="149a2631-2085-4a63-a9ce-2bb5bcf801ae" class="numbered-list" start="1"><li><strong>En Primeur</strong>, selling wine from grapes in harvest </li></ol><ol type="1" id="4b218916-0397-400d-9ca2-71c12d079cd9" class="numbered-list" start="2"><li><strong>Wine-searcher</strong>, 1999, specialist wine database, the google of wine</li></ol><ol type="1" id="ca7df3f3-67bb-4f55-808f-49e7d968cbbc" class="numbered-list" start="3"><li><strong>Liv ex</strong>, 2000, built a <a href="https://www.liv-ex.com/solutions/">raft of wine trading technologies</a> </li></ol><ol type="1" id="56233f7e-7d04-48ce-a7b9-0944c4e01aa9" class="numbered-list" start="4"><li><strong>Cellar Tracker</strong>, 2003. stores information about wines and wine collections</li></ol><ol type="1" id="fec50f95-77e8-414b-a216-6390ebc091a3" class="numbered-list" start="5"><li><strong>Vivino</strong>, started in 2010, first to log, track, and review wines drunk. Now acts as a wine recommendation service &amp; shopping aggregator</li></ol><ol type="1" id="3f1d9f45-081b-4c17-adbf-6bf78bbfb6b1" class="numbered-list" start="6"><li><strong>Ecommerce infrastructure</strong> like Shopify created a faster and cheaper go-to-market strategy for all sizes of distributors</li></ol><ol type="1" id="24049481-b8e4-4907-8d62-685a2ec152f7" class="numbered-list" start="7"><li><strong>WiV technologies</strong>, 2018, use blockchain technology to create a secure global asset register and enable a more transparent, sustainable, and decentralised wine investment business</li></ol><ol type="1" id="22dfabcb-cb74-4def-92f7-ab6459b3cc9e" class="numbered-list" start="8"><li><strong>Blockbar</strong>, 2021, NFT marketplace for luxury liquor brands, each NFT corresponds to a physical bottle and consumers can exchange a digital version for the physical</li></ol><p id="8a50887c-f77c-4991-86f6-6b074129c03f" class="">
+</p><p id="887278ec-40fd-47d1-9f21-4bd027936972" class="">Sources: </p><ul id="f0890ea4-f8fb-4d46-9f17-f17791c0f09d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.winemag.com/2019/07/16/what-is-a-cru/">https://www.winemag.com/2019/07/16/what-is-a-cru/</a></li></ul><ul id="e3185916-f80e-4e26-97a8-2b5bbe984988" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.decanter.com/learn/advice/what-is-the-vdp-51673/#:~:text=Founded%20in%201910%20by%20the,wines%20on%20the%20auction%20market">https://www.decanter.com/learn/advice/what-is-the-vdp-51673/</a></li></ul><ul id="2b4acd7c-a5bb-4e0a-a177-9a5a742686d9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://vinepair.com/wine-colonized-world-wine-history">https://vinepair.com/wine-colonized-world-wine-history</a></li></ul><ul id="797c4fca-293a-4d9d-994b-812ea7b7fa4e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://files.liv-ex.com/How_to_digitally_transform_your_wine_business_v3.pdf">https://files.liv-ex.com/How_to_digitally_transform_your_wine_business_v3.pdf</a></li></ul><ul id="fc86c37e-067c-414e-b8d8-a9394f00e50f" class="bulleted-list"><li style="list-style-type:disc"><a href="http://www.academicwino.com/2014/07/history-of-wine-containers.html/">http://www.academicwino.com/2014/07/history-of-wine-containers.html/</a></li></ul><h1 id="69a1449f-b870-44bb-8c45-64e41aaaaf12" class="">Lessons learned</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9d3a324e-57c9-4ffb-ba3d-d76fb49ce991"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Value over vanity!</div></figure><p id="a5b19f0a-5c40-4486-9c4b-a0783804df02" class="">From the evaluation of companies working with wine and leading technology, there appears to be 2 types of companies: </p><ol type="1" id="3cf05905-580b-48b8-8279-82eb757070bb" class="numbered-list" start="1"><li>Companies using technology/NFTs as a marketing tool for buyers in a new market, or buyers with cryptocurrency to spend</li></ol><ol type="1" id="e2cf86f7-1e76-4547-9de6-91fc3019e188" class="numbered-list" start="2"><li>Companies using technology/NFTs as a utility to solve an underlying problem in wine-commerce or supply chain</li></ol><p id="7050a01d-b5db-44b7-bccd-4df1d4c5c47f" class="">Our strategic focus lies in the latter.</p><h1 id="aebcfbd4-8853-4c50-a364-da5b549973b9" class="">Current Opportunities</h1><p id="9b584b4f-fb1c-4e3b-8693-65fd0d4b8245" class="">During recent wine purchases/wine forays, our team noted the below issues as </p><ul id="d35b77d4-f79b-4950-b788-bcd6439d7c70" class="bulleted-list"><li style="list-style-type:disc">En-Primeur wine as noted <a href="https://www.notion.so/What-We-re-Building-and-Why-e011083b9f6b4fbca6917f5f58980ea8">above</a></li></ul><ul id="13b0ee49-fffa-4398-85d2-a8e0d937c0fe" class="bulleted-list"><li style="list-style-type:disc">Winemakers are not interested in d2c, marketing, or (mostly) anything outside of making wine and tending to grapes</li></ul><ul id="121d9649-f20b-479c-a6fb-dc896bc6d0b4" class="bulleted-list"><li style="list-style-type:disc">Buying and selling wine is a dated industry which at best is archaic</li></ul><ul id="fd9479a7-f3d4-45ea-afd0-dde29ce17745" class="bulleted-list"><li style="list-style-type:disc">Wine pricing is easily arbitraged, there is no global wine tech</li></ul><ul id="9fa976ee-1abe-4ed2-bee3-db7fcfef5dc7" class="bulleted-list"><li style="list-style-type:disc">Direct to Consumer is hard, I’d love to purchase from vineyards, but vineyards are always 10 - 20% more expensive</li></ul></div></article></body></html>

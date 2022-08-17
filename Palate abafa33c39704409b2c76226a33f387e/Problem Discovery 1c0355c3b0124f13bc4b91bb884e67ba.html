@@ -1,0 +1,723 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Problem Discovery</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1c0355c3-b012-4f13-bc4b-91bb884e67ba" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💡</span></div><h1 class="page-title">Problem Discovery</h1></header><div class="page-body"><blockquote id="2223069b-fc40-49b1-8d26-6c6aa0a1e9c7" class="">This problem roadmap focuses on the customer problems through experience and customer interviews </blockquote><p id="755718bf-1e15-4e26-901b-519d0bf93fa5" class="">
+1. <strong>Explain the problem with good reason as to why it’s a problem - these will have come from customer discovery
+2. Identify current solutions and why they’re not working
+3. Propose solutions, blue sky is ok
+4. Assign an
+- Intensity: </strong>from 1 - 5, how intense does the customer have this problem? 5 being desperately needing solving<strong>
+- Frequency: </strong>from 1 - 5, how often do they come across the problem. 1 being rarely, 5 being multiple times a day<strong>
+- Impact size: </strong>Does this affect their whole business or just a few people in the business<strong>
+5. Assign a status
+- </strong>Promising: this is a problem worth solving, no big risks
+- Passed: viable option
+- Side Project: problem worth solving, can validate in spare time
+- Research: problem worth solving, not sure how
+<strong>6</strong>. <strong>Identify case-studies in the market or link to customer interview
+7. List any risks or reasons not to go ahead
+
+</strong>The problem framework draws inspiration from <a href="https://melissaperri.com/blog/2014/05/19/rethinking-the-product-roadmap">Melissa Perri</a> and <a href="https://twitter.com/soroushjp/status/1137041494798426112">Soroush Pour’s</a> <a href="https://airtable.com/shrKSHLK32tzeMqpu">airtable</a></p><div id="2f8f37f9-55b5-47fc-89a9-64cc9186706e" class="collection-content"><h4 class="collection-title">Problem Discovery</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Problem statement</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Who has the problem</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Current solution(s)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M7.77892,7.06304 L4.62218,11.2875 C4.58556,11.3416 4.55285,11.4392 4.5504,11.5052 C4.5504,11.7022 4.7047,11.8619 4.89562,11.8619 L11.1383,11.8619 C11.6139,11.8619 11.9996,12.2598 11.9996,12.7507 L11.9996,13.1111 C11.9996,13.602 11.6139,14 11.1383,14 L1.861927,14 C1.385853,14 1.00011061,13.602 1.00011061,13.1111 L1.00011061,12.6858 C0.99718092,12.4783 1.0523567,12.3098 1.176868,12.1466 L4.39269,7.79888 C4.74816,7.31841 4.74572,6.65139 4.38683,6.17354 L1.400013,2.19436 C1.27306,2.03028 1.216419,1.85993 1.219349,1.65006 L1.219349,0.888889 C1.219349,0.397968 1.605091,0 2.08117,0 L10.91906,0 C11.3946,0 11.7804,0.397968 11.7804,0.888889 L11.7804,1.24925 C11.7804,1.74017 11.3946,2.13814 10.91906,2.13814 L5.13634,2.13814 C4.94542,2.13814 4.79064,2.29801 4.79064,2.49522 C4.79308,2.56049 4.82482,2.65709 4.86095,2.71087 L7.78038,6.68628 C7.8297,6.74847 7.84435,6.7934 7.84142,6.87363 C7.84435,6.95493 7.82921,7.00048 7.77892,7.06304 Z"></path></svg></span>Total Score</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Proposed solution(s)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Next Steps</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Top Risks / Pass Reason</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Intensity (1 - 5)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Frequency (1 - 5)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Impact Size (1 - 5)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Status</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Theme</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Case Studies</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Additional Comments</th></tr></thead><tbody><tr id="6620d154-20c9-4186-81c3-901fed0ec601"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Questioning%20value%20of%20smart-assets%206620d15420c9418681c3901fed0ec601.html">Questioning value of smart-assets</a></td><td class="cell-b{{o">How can Smart Assets be truly valuable? How is the physical good verified in good quality at all moments in time?</td><td class="cell-bcdc">- Smart Asset creators</td><td class="cell-oRgw">Holding wine bought in-primer and In Bond. Companies like BBR offer these services
+En Primeur = allows you to secure parcels of some of the world’s most sought-after wines before they are bottled and officially released to the open market.
+In Bond = not duty or VAT. You need to pay the duty &amp; VAT when receiving your wine outside of bonding</td><td class="cell-N&lt;l&lt;">11</td><td class="cell-MlxZ">Asset conditions need to be in-sync + updating blockchain regularly. For example, if it’s wine, then the temperature, humidity, vibration, weight needs to be updating the “health” of the wine as a score attached to the smart asset.</td><td class="cell-_UOy">Nothing atm</td><td class="cell-Bga&lt;">This question will be asked often by customers and investors. Need to understand and look into it</td><td class="cell-FUUM">1</td><td class="cell-^WPQ">5</td><td class="cell-VI^|">5</td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="aa96eb69-0e2d-40ba-a797-ec3c98d060b8"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Buying%20en-primeur%20wines%20aa96eb690e2d40baa797ec3c98d060b8.html">Buying en-primeur wines</a></td><td class="cell-b{{o">I can’t remember which en-primeur wines I bought</td><td class="cell-bcdc">Wine buyers</td><td class="cell-oRgw">Currently we’re sent a receipt of the wine purchase</td><td class="cell-N&lt;l&lt;">10</td><td class="cell-MlxZ">Digital certificate of en-primeur wine purchase, able to see what I purchased and where from. Can also trade the certificate</td><td class="cell-_UOy">Create a prototype</td><td class="cell-Bga&lt;">People don’t want a digital certificate</td><td class="cell-FUUM">5</td><td class="cell-^WPQ">2</td><td class="cell-VI^|">3</td><td class="cell-h`Wu"><span class="selected-value select-value-color-pink">Side project</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span><span class="selected-value select-value-color-red">Wine Tech</span></td><td class="cell-XjRx">AirRobe</td><td class="cell-RXQU">This can be something easy to prototype and receive feedback on whether companies will buy it.</td></tr><tr id="ba3f6e22-dc22-4942-b03a-7812c2ae8b94"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Wine%20as%20a%20liquid%20asset%20ba3f6e22dc224942b03a7812c2ae8b94.html">Wine as a liquid asset</a></td><td class="cell-b{{o">Customers with valuable wine would like to use it as an asset for loan collateral</td><td class="cell-bcdc">- Wine investors
+- Wine collectors</td><td class="cell-oRgw">1 person I’ve found online used their wine in BBR as an asset
+<a href="https://twitter.com/wivteam">$WIVA</a> THE FIRST COMPANY BRINGING PHYSICAL TO DIGITAL AS NFTS </td><td class="cell-N&lt;l&lt;">10</td><td class="cell-MlxZ">Tokenized wine assets</td><td class="cell-_UOy">Use WIV - currently doing something similar to what Palate aims to be. Understand how it works &amp; what problems it solves</td><td class="cell-Bga&lt;">NFT asset price doesn’t equal the price of the wine
+The wine is corked
+The wine is not the wine it was promised to be
+The wine isn’t valuable in the first place
+Wine loses its value</td><td class="cell-FUUM">3</td><td class="cell-^WPQ">2</td><td class="cell-VI^|">5</td><td class="cell-h`Wu"><span class="selected-value select-value-color-red">Passed</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-default">Wine Asset</span></td><td class="cell-XjRx">WIVA</td><td class="cell-RXQU">The biggest risk I see is that the  the wine needs to be valuable. If the wine isn’t, everything falls apart</td></tr><tr id="18923c60-e7a4-49d4-9ee0-3c6a7b8f8f67"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Wine%20provenance%2018923c60e7a449d49ee03c6a7b8f8f67.html">Wine provenance</a></td><td class="cell-b{{o">Customers buying wine at an auction don&#x27;t know if the wine is authentic and has been kept in optimum temperature</td><td class="cell-bcdc">- Wine investors
+- Wine collectors</td><td class="cell-oRgw">BBR &amp; alternative - certificate of ownership and authenticity. When wine trades, physical bottles in the cellar need updating (sticker, etc) lots of person hours. 
+CellarIT - nothing
+MS Cellars - making a wine exchange program for wines bought from them</td><td class="cell-N&lt;l&lt;">9</td><td class="cell-MlxZ">NFT to track authenticity and provenance</td><td class="cell-_UOy">Dig further into the wine trading market, b2b, wine industry to understand where a tech like palate would sit and what they’re thinking about at the moment</td><td class="cell-Bga&lt;">Convincing people of the benefits of the technology</td><td class="cell-FUUM">2</td><td class="cell-^WPQ">2</td><td class="cell-VI^|">5</td><td class="cell-h`Wu"><span class="selected-value select-value-color-orange">Promising</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-red">Wine Tech</span></td><td class="cell-XjRx">BBR, Wine trading, any wine warehouse</td><td class="cell-RXQU">I think it’s at a low intensity &amp; frequency because the momentum is building for the space &amp; first movers understand it better</td></tr><tr id="296a5e39-3dbf-48b0-b266-8a83a2c32446"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Wine%20maker%20selling%20direct%20to%20consumer%20296a5e393dbf48b0b2668a83a2c32446.html">Wine maker selling direct to consumer</a></td><td class="cell-b{{o">Winemakers want a direct to consumer channel that guarantees the users they sell to a2re the consumers of the wine</td><td class="cell-bcdc">- Wineries / Winemakers</td><td class="cell-oRgw">Direct from their website or cellar</td><td class="cell-N&lt;l&lt;">9</td><td class="cell-MlxZ">Web 2.0 app for winemakers to access Web 3.0</td><td class="cell-_UOy">Find winemakers selling d2c and chat with them</td><td class="cell-Bga&lt;">Bad handling, Web3 websites are hard to deal with. Wine industry doesn’t want to be paid in crypto</td><td class="cell-FUUM">2</td><td class="cell-^WPQ">2</td><td class="cell-VI^|">5</td><td class="cell-h`Wu"><span class="selected-value select-value-color-orange">Promising</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-green">Wine Industry</span></td><td class="cell-XjRx">Most wineries &amp; cellars</td><td class="cell-RXQU"></td></tr><tr id="6a50420f-4c4b-4c3e-be35-fdeb4b9f233c"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Charging%20mechanism%20for%20wine%20delivery%20from%20an%20NFT%20s%206a50420f4c4b4c3ebe35fdeb4b9f233c.html">Charging mechanism for wine delivery from an NFT sale</a></td><td class="cell-b{{o">Customers buying blockchain smart assets need to pay for delivery or storage. Delivery + Storage + admin fees would need to be factored into the price of the smart asset (not reflective of the true price)
+Like AirBNB </td><td class="cell-bcdc">- Smart Asset creators</td><td class="cell-oRgw">Charge an extra fee in addition to the token, that could be charged in FIAT or coins</td><td class="cell-N&lt;l&lt;">9</td><td class="cell-MlxZ">EIP update to ERC721 for smart assets including 
+1. if annual fee required i.e. for storage of a smart asset, how to factor into the smart contract, how to update the token holder
+2. if delivery fee required, how to factor in the smart contract? Is there a different mechanism for trade rather than buy/burn?</td><td class="cell-_UOy">Look into starting an EIP update. How would I submit it?</td><td class="cell-Bga&lt;">Wasting time on a problem not needing solving
+Customers not trusting a different contract outside of ERC721</td><td class="cell-FUUM">1</td><td class="cell-^WPQ">3</td><td class="cell-VI^|">5</td><td class="cell-h`Wu"><span class="selected-value select-value-color-pink">Side project</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span></td><td class="cell-XjRx"></td><td class="cell-RXQU">This would help me learn more about EIP, Smart Contracts, and solidity. However, not really necessary at the moment. The mechanism could be the business itself rather than the wine</td></tr><tr id="84aa133d-dc76-4eff-8b99-1a05e27088f2"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Changing%20the%20NFT%20sale%20price%20yearly%2084aa133ddc764eff8b991a05e27088f2.html">Changing the NFT sale price yearly</a></td><td class="cell-b{{o">If I host my wine for sale, I’ll need to change the sale price yearly otherwise someone may buy my wine when its undervalued.
+If the asset becomes more valuable, e.g. robert parker says the vintage is the vintage of a century, how to track + update prices accordingly</td><td class="cell-bcdc">- NFT buyers &amp; sellers
+- NFT markets</td><td class="cell-oRgw">- Put a very high price and let someone bid
+- Take away the sell option
+- HashLips Dynamic NFT pricing <a href="https://www.youtube.com/watch?v=B1XNN3rSoe4">https://www.youtube.com/watch?v=B1XNN3rSoe4</a></td><td class="cell-N&lt;l&lt;">8</td><td class="cell-MlxZ">Bake a yearly CPI adjustment into the contract (updating daily for example) 
+or....
+Dynamic pricing based on other factors like number of positive reviews, twitter market sentiment</td><td class="cell-_UOy">Look into how it’s solved today</td><td class="cell-Bga&lt;"></td><td class="cell-FUUM">2</td><td class="cell-^WPQ">3</td><td class="cell-VI^|">3</td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span></td><td class="cell-XjRx"><a href="https://www.youtube.com/watch?v=B1XNN3rSoe4">https://www.youtube.com/watch?v=B1XNN3rSoe4</a></td><td class="cell-RXQU"></td></tr><tr id="dcfc3726-5427-4d7a-b5a9-e210947eda8b"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/High%20wine%20tax%20dcfc372654274d7ab5a9e210947eda8b.html">High wine tax</a></td><td class="cell-b{{o">Investors in Australia pay tax for buying wine even if it’s for investing. European wine investors can buy Inbond (no duty or tax until wine is retrieved from the warehouse). 
+When it’s retreived, the current tax is paid</td><td class="cell-bcdc">- Wine buyers
+- Wine collectors
+- Wineries</td><td class="cell-oRgw">inbond warehousing</td><td class="cell-N&lt;l&lt;">6</td><td class="cell-MlxZ">1. In-bond warehousing in Australia
+2. Easy access to in-bond warehousing overseas</td><td class="cell-_UOy">Ask why isn’t bonding in Australia?
+If AU wine is bonded in UK, why not bond it here and sell to europe?</td><td class="cell-Bga&lt;">Not much, fairly innocent</td><td class="cell-FUUM">1</td><td class="cell-^WPQ">1</td><td class="cell-VI^|">4</td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-green">Wine Industry</span></td><td class="cell-XjRx">BBR, Wine trading, any wine warehouse</td><td class="cell-RXQU"></td></tr><tr id="52fc7975-ca39-4597-a615-27b8af48835c"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Winemakers%20not%20interested%20in%20D2C%20but%20need%20to%20be%2052fc7975ca394597a61527b8af48835c.html">Winemakers not interested in D2C but need to be</a></td><td class="cell-b{{o">Oftentimes, winemakers excel at winemaking and tending to grapes, but not necessarily direct 2 consumer sales</td><td class="cell-bcdc">Winemakers, Vineyards</td><td class="cell-oRgw">Shopify website and self-marketing
+Mailing lists
+Distributors
+</td><td class="cell-N&lt;l&lt;">5</td><td class="cell-MlxZ">Shopify-like platform specific for wine</td><td class="cell-_UOy">No next steps</td><td class="cell-Bga&lt;">This is a crowded segment</td><td class="cell-FUUM">5</td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="b371d0be-0089-4956-bb8a-5e4e4e7ae13b"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Brand%20representation%20in%20the%20metaverse%20b371d0be00894956bb8a5e4e4e7ae13b.html">Brand representation in the metaverse</a></td><td class="cell-b{{o">Fashion labels have stores in the metaverse, places like decentraland have shops by ralph lauren, etc.
+Big wine labels want to show off their brand and sell digital wine assets</td><td class="cell-bcdc">- Wine brands (all brands)</td><td class="cell-oRgw">Companies buying and building marketplaces in decentraland i.e. polo, etc</td><td class="cell-N&lt;l&lt;">3</td><td class="cell-MlxZ">- Digital wine available in metaverse stores
+- Buying smart asset wine from metaverse wine shops</td><td class="cell-_UOy">Play in decentraland and look at the shops running already</td><td class="cell-Bga&lt;">no one wants digital wine without the asset underlying</td><td class="cell-FUUM">1</td><td class="cell-^WPQ">1</td><td class="cell-VI^|">1</td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="67b108c1-dc0e-43d3-9d79-61e01713dc4d"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/How%20do%20I%20know%20my%20wine%20storage%20is%20at%20a%20consistent%20t%2067b108c1dc0e43d39d7961e01713dc4d.html">How do I know my wine storage is at a consistent temperature?</a></td><td class="cell-b{{o"></td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="c06ac3ff-4511-4495-bca0-ad5571585608"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Want%20to%20copy%20wine%20NFT%20sellers%20c06ac3ff45114495bca0ad5571585608.html">Want to copy wine NFT sellers</a></td><td class="cell-b{{o">Market started already and wine makers can see benefit though don&#x27;t know where to start</td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="04c3dde0-bd9f-422a-b6a3-0b566dbfa7c0"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Expensive%202nd%20market%20for%20wine%2004c3dde0bd9f422ab6a30b566dbfa7c0.html">Expensive 2nd market for wine</a></td><td class="cell-b{{o">Wine traders inflate wine prices - wineries don&#x27;t sell to who can drink. Wineries still earn a similar amount of money</td><td class="cell-bcdc"></td><td class="cell-oRgw">Wine auction houses charging 52.5% of the wine value for reselling</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ">DTC membership through burnt NFT</td><td class="cell-_UOy">Find the size of the 2nd hand wine market in AUS/Globally</td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="21365309-58e9-4aab-af40-edf41ca08dce"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Manage%20corked%20wines%202136530958e94aabaf40edf41ca08dce.html">Manage corked wines</a></td><td class="cell-b{{o"></td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-yellow">Cancel</span></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="5c3edca0-d7a6-41ff-8103-cd7de0de0eaa"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/NFT%20prices%20in%20ETH%20offer%20buyers%20arbitrage%20opportuni%205c3edca0d7a641ff8103cd7de0de0eaa.html">NFT prices in ETH offer buyers arbitrage opportunities</a></td><td class="cell-b{{o">Arbitrage opportunities can exist if the price of ETH drops below the price of the asset in USD. How can we peg the price according to USD for example</td><td class="cell-bcdc">- NFT buyers &amp; sellers
+- NFT markets</td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="787848f3-a0cb-44de-b29b-56a0442cbf05"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Buy%20fake%20or%20corked%20wine%20787848f3a0cb44deb29b56a0442cbf05.html">Buy fake or corked wine</a></td><td class="cell-b{{o">What can I do if I’ve bought fake or corked wine?</td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"> Some sort of 3rd party responsible in a transaction like paypal who guarantees &amp; holds money</td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="87b49ba7-bfdd-4939-a8ab-46efd5034b1b"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Wine%20catalogue%2087b49ba7bfdd4939a8ab46efd5034b1b.html">Wine catalogue</a></td><td class="cell-b{{o">How to I catalogue my wine collection?</td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="08606f6b-8a96-4cd5-9c2a-be285c370bfa"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Untitled%2008606f6b8a964cd59c2abe285c370bfa.html">Untitled</a></td><td class="cell-b{{o"></td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="5dcfa0b5-2e63-4bad-8470-fc55caecf763"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Brand%20recognition%20is%20low%205dcfa0b52e634bad8470fc55caecf763.html">Brand recognition is low</a></td><td class="cell-b{{o">Food and beverage makers don&#x27;t sell their brand enough - Food and beverage industries have famous brands but they don&#x27;t sell their brand or use their brand recognition for other things</td><td class="cell-bcdc"></td><td class="cell-oRgw">New marketing
+</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="7fde9cda-3449-450e-a621-e229396c852b"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Winemaker%20create%20NFT%20for%20their%20wine%207fde9cda3449450ea621e229396c852b.html">Winemaker create NFT for their wine</a></td><td class="cell-b{{o"></td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-orange">Promising</span></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="9d5ba766-b632-4cb0-b630-6df582191586"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Winemakers%20need%20to%20add%20value%20to%20their%20wine%209d5ba766b6324cb0b6306df582191586.html">Winemakers need to add value to their wine</a></td><td class="cell-b{{o">How do I add value to my FMCG good?</td><td class="cell-bcdc">- Winemaker
+- distributors</td><td class="cell-oRgw">- marketing</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ">Platform to increase wine value by marketing, authenticity and storage</td><td class="cell-_UOy">Create prototype</td><td class="cell-Bga&lt;">storage is a hassle</td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="f11972c9-1761-423f-b062-8f16114e057d"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Food%20safety%20and%20security%20is%20a%20painful%20administrati%20f11972c91761423fb0628f16114e057d.html">Food safety and security is a painful administration task</a></td><td class="cell-b{{o">Keeping logs, temperatures and durations is a painful task</td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-yellow">Cancel</span></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="f415e5d5-6981-4f94-9473-5518185e7b2f"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Winemaker%20creating%20NFT&#x27;s%20for%20their%20wine%20to%20sell%20f415e5d569814f9494735518185e7b2f.html">Winemaker creating NFT&#x27;s for their wine to sell</a></td><td class="cell-b{{o">Vineyards see the value in creating digital experiences and NFT&#x27;s of wine, though they&#x27;re frustrated with technology limitations</td><td class="cell-bcdc"></td><td class="cell-oRgw">Hire a dev &amp; mint on another platform
+</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ">Web 2.0 app for winemakers to access Web 3.0</td><td class="cell-_UOy">Create NFT’s for a few wines I own and sell them. Ask the buyers what made them interested and what would make them more interested</td><td class="cell-Bga&lt;">No one will buy the NFT, no one cares about a digital artwork of a wine</td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-pink">Side project</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-yellow">NFT Tech</span><span class="selected-value select-value-color-red">Wine Tech</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="f81fe616-66ac-461d-a52a-67dec13910d2"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Finding%20wine%20from%20in-bond%20warehouses%20f81fe61666ac461da52a67dec13910d2.html">Finding wine from in-bond warehouses</a></td><td class="cell-b{{o">All in-bond warehouses are run by different players. How can I search through them all to find wine I want?</td><td class="cell-bcdc">-Wine investors, wine buyers</td><td class="cell-oRgw">Each website has a wine listing. 
+Apps like cellar tracker, vinfolio, vincellar offer cellaring apps</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-green">Wine Industry</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="9b10001d-7604-4f6d-990a-6ac88f99476f"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Wine%20Insurance%209b10001d76044f6d990a6ac88f99476f.html">Wine Insurance</a></td><td class="cell-b{{o"></td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ"></td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-yellow">Cancel</span></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="be64ddab-5d0c-43d8-bd0e-13d1456269bc"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Food%20provenance%20be64ddab5d0c43d8bd0e13d1456269bc.html">Food provenance</a></td><td class="cell-b{{o">Customers buying milk powder after travelling different destinations won&#x27;t know what&#x27;s authentic</td><td class="cell-bcdc"></td><td class="cell-oRgw">Retail solutions like magnetic strips (for within shop), outside shop I’m not sure (john west, etc?)</td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ">NFT to track authenticity and provenance</td><td class="cell-_UOy">Find someone in the milk powder space to ask what plans they have for authenticity</td><td class="cell-Bga&lt;">- The product mechanism can be swapped from container to container. i.e. old milk powder jar to new milk powder jar
+- consumers won’t know how to look up the authenticity of the product</td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"><span class="selected-value select-value-color-blue">Research</span></td><td class="cell-@aQX"><span class="selected-value select-value-color-green">Wine Industry</span></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr><tr id="c0d200be-9326-4b1a-b032-944d6e1802d6"><td class="cell-title"><a href="Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba/Problem%20Discovery%202f8f37f955b547fc89a964cc9186706e/Can&#x27;t%20buy%20directly%20from%20the%20winery%20c0d200be93264b1ab032944d6e1802d6.html">Can&#x27;t buy directly from the winery</a></td><td class="cell-b{{o">Can&#x27;t buy directly from the winery because they don&#x27;t offer DTC sales.
+Is this a licensing thing? Is it advertising?</td><td class="cell-bcdc"></td><td class="cell-oRgw"></td><td class="cell-N&lt;l&lt;">0</td><td class="cell-MlxZ">advertising: website like opensea for wine</td><td class="cell-_UOy"></td><td class="cell-Bga&lt;"></td><td class="cell-FUUM"></td><td class="cell-^WPQ"></td><td class="cell-VI^|"></td><td class="cell-h`Wu"></td><td class="cell-@aQX"></td><td class="cell-XjRx"></td><td class="cell-RXQU"></td></tr></tbody></table></div></div></article></body></html>

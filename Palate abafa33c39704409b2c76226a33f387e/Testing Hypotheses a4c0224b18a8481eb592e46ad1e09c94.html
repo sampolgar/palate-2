@@ -1,0 +1,672 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Testing Hypotheses</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a4c0224b-18a8-481e-b592-e46ad1e09c94" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🧪</span></div><h1 class="page-title">Testing Hypotheses</h1></header><div class="page-body"><nav id="90eddaaa-1488-4b0d-9417-1e8429fdf9b7" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1c3634aa-1842-4d5d-84b7-fdb0a2a39537">Main Pain Points</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#26fc0b57-dfd7-40e4-b90b-c9b9d4d36fb2">Main Gains/Features for Palate</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#76d5f113-bac0-4ce0-ad63-a91e1994d85a">Main Assumptions</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e9c0a58-6fb4-4303-a7bd-71d10e904f62">Customer Empathy Map</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2617a7d1-f6ce-49da-956d-9d47fcc3a6f4">Key Themes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9b8847ca-a495-4844-ba4f-1060bedf94b2">2 distinct problems</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c7029bac-5182-42a5-af4f-03b9e59c265c"></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1f4c1fa9-56f8-42bb-a239-9ca765c84d83">Opportunity Mapping</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8367433b-4d94-459e-aa3d-63049ebea359">Opportunity 1  - Automate wine purchase to cellaring</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e0a04c56-7db9-407c-95fc-2238ed4f128d">Opportunity 2 - Find wine selling opportunities</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2f509a25-cc7d-4877-8997-e54b494fefee">Opportunity 3 - Can’t easily track en-primeur wine purchases</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#02fdf975-ae50-4493-b752-3870980e5c58">User Journey Map</a></div></nav><h2 id="1c3634aa-1842-4d5d-84b7-fdb0a2a39537" class="">Main Pain Points</h2><ol type="1" id="cc389f4d-bd7f-4ef6-b5b8-171e77714b63" class="numbered-list" start="1"><li>Automatically track wine purchases</li></ol><ol type="1" id="4cf4eb4c-2fde-42ec-a2e2-82e9649ec99e" class="numbered-list" start="2"><li>Provide option to sell owned wine</li></ol><ol type="1" id="9a29951f-76ce-403e-8d40-f166b2e4f1c6" class="numbered-list" start="3"><li>Track estimated price of wine</li></ol><ol type="1" id="0c2f6afa-aafe-4727-ac4c-28b3649d5d23" class="numbered-list" start="4"><li>Allow allocations of future wine</li></ol><ol type="1" id="e4870a29-1d7f-4207-880d-fe96c80da7c4" class="numbered-list" start="5"><li>Receive updates on wine</li></ol><h2 id="26fc0b57-dfd7-40e4-b90b-c9b9d4d36fb2" class="">Main Gains/Features for Palate</h2><ol type="1" id="c0700c66-8da1-4bf8-8637-82ca242145ae" class="numbered-list" start="1"><li>Ability to sell EP purchases </li></ol><ol type="1" id="ebfbc514-d07f-42e4-af61-116740893063" class="numbered-list" start="2"><li>Ability to purchase future allocations</li></ol><ol type="1" id="589918cb-12ee-4aec-9e95-f9315486269a" class="numbered-list" start="3"><li>Hold wine in storage</li></ol><h2 id="76d5f113-bac0-4ce0-ad63-a91e1994d85a" class="">Main Assumptions</h2><ul id="344393d3-2d6a-43e9-8e94-49f7fcd397b4" class="bulleted-list"><li style="list-style-type:disc">Wine buyers need technology</li></ul><ul id="3c1a32e3-01c9-49a7-a318-29551c874371" class="bulleted-list"><li style="list-style-type:disc">Wine buyers are aware of blockchain</li></ul><ul id="94bbcdc3-2a46-4cda-a614-72c4051561a0" class="bulleted-list"><li style="list-style-type:disc">Wine buyers want to use another system to track cellar</li></ul><ul id="b2870ec7-b0f0-4248-a31f-5ff713ffbcf2" class="bulleted-list"><li style="list-style-type:disc">Lack of automation is a problem</li></ul><h2 id="1e9c0a58-6fb4-4303-a7bd-71d10e904f62" class="">Customer Empathy Map</h2><figure id="42ff203f-4bd2-4334-97fe-6587de98c67c" class="image"><a href="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.27.48_pm.png"><img style="width:1128px" src="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.27.48_pm.png"/></a></figure><h2 id="2617a7d1-f6ce-49da-956d-9d47fcc3a6f4" class="">Key Themes</h2><figure id="ab6a0983-0026-4444-a2de-1d66ea5a3ce7" class="image"><a href="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.28.22_pm.png"><img style="width:940px" src="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.28.22_pm.png"/></a></figure><p id="652eec02-1b56-44ed-ad66-9f4237b89bd7" class="">
+</p><h3 id="9b8847ca-a495-4844-ba4f-1060bedf94b2" class="">2 distinct problems</h3><ol type="1" id="4ef20a5d-e22e-4f5e-a397-4819aae69c29" class="numbered-list" start="1"><li>Wine Storage</li></ol><ol type="1" id="fe36285c-db9d-488e-8349-769632d19512" class="numbered-list" start="2"><li>Wine Technology<ol type="a" id="2e96d7d1-59a7-4a8e-a3d4-a30d33a34206" class="numbered-list" start="1"><li>automate wine purchase to cellaring</li></ol><ol type="a" id="754fce7f-111d-4daf-b7c6-2a2d3ee80492" class="numbered-list" start="2"><li>find wine purchase/selling opportunities</li></ol><ol type="a" id="b4d4d303-6847-4a49-b147-fe341a3f76c1" class="numbered-list" start="3"><li>Can’t easily track en-primeur wine</li></ol><p id="60aa1eed-d257-4f3f-a794-1b9cd420c45c" class="">
+</p></li></ol><h2 id="c7029bac-5182-42a5-af4f-03b9e59c265c" class=""></h2><h1 id="1f4c1fa9-56f8-42bb-a239-9ca765c84d83" class="">Opportunity Mapping</h1><h2 id="8367433b-4d94-459e-aa3d-63049ebea359" class="">Opportunity 1  - Automate wine purchase to cellaring</h2><p id="b778f2c1-849d-4378-8670-1611d541d728" class=""><strong>Outcome:</strong> Users automatically update their wine collection from purchasing to drinking</p><p id="5c018dcf-86dc-4e3b-8397-c1da16fd78eb" class=""><strong>Opportunity: </strong>Purchase to Cellar Tracker Automation</p><p id="9e6c9832-0083-4272-ab3d-397a128a48e6" class=""><strong>Solutions:</strong></p><ul id="67f65a0e-c404-4207-9a45-3a3ba4a3af47" class="bulleted-list"><li style="list-style-type:disc">Website widget to automate purchase to cellar</li></ul><ul id="c68ada32-6924-43cd-be95-aaa687a86bcf" class="bulleted-list"><li style="list-style-type:disc">Email address to send receipts to - AI to monitor and upload to your cellar</li></ul><ul id="f28500d1-efe5-43fc-b707-4faeb80ff92e" class="bulleted-list"><li style="list-style-type:disc">Screenshot reader</li></ul><ul id="fbd3cb2d-59f1-4ea4-9a71-b4b4538e2155" class="bulleted-list"><li style="list-style-type:disc">Integration with known wine ERP</li></ul><p id="80c55a49-c405-44a6-a927-be3d986bf28d" class=""><strong>Experiments</strong></p><ul id="ba6627e5-f437-4d80-aed6-549f74900385" class="bulleted-list"><li style="list-style-type:disc">Prototype the widget for technical feasibility - will the widget read the web page purchases</li></ul><ul id="b6d346b0-7b16-4bd1-822d-9bea63de67ad" class="bulleted-list"><li style="list-style-type:disc">Prototype Cellar Tracker integration - is it capable</li></ul><ul id="0b37656b-0556-46a9-b572-c9e23379a928" class="bulleted-list"><li style="list-style-type:disc">Qualitative interviews - is it worth paying for?</li></ul><h2 id="e0a04c56-7db9-407c-95fc-2238ed4f128d" class="">Opportunity 2 - Find wine selling opportunities</h2><p id="b68c5d4c-001e-42cf-85b2-0ffd32eeb77f" class=""><strong>Outcome:</strong> find/sell current wine</p><p id="b90290ee-5921-4dc9-8862-e1b6ff3c98d9" class=""><strong>Opportunity:</strong> don’t know how to sell my wine</p><p id="0574877e-65a1-4870-9dc3-e094256f0811" class=""><strong>Solutions: </strong></p><ul id="7b9731ad-ef3b-4d2a-a328-f5cad694eb0d" class="bulleted-list"><li style="list-style-type:disc">List cellar tracker inventory on a public marketplace</li></ul><ul id="28ad99c8-bf28-49c9-8dac-62b09bc09f17" class="bulleted-list"><li style="list-style-type:disc">Cellar Tracker integration with Liv Ex selling</li></ul><ul id="4a0333fe-0821-4f75-a76f-8947eefdfa38" class="bulleted-list"><li style="list-style-type:disc">App to sell wine</li></ul><p id="c5c189bf-dd86-4d00-96b6-c05422b589c5" class=""><strong>Experiments</strong></p><ul id="012e6400-34d2-4231-84c6-b9aa4c6fa5c4" class="bulleted-list"><li style="list-style-type:disc">Qualitative interviews with Cellar Tracker user base to assess selling requirements</li></ul><ul id="fc62bd90-98e4-4685-917a-0fe500c2ce16" class="bulleted-list"><li style="list-style-type:disc">Feasibility prototype for Cellar Tracker &amp; Liv Ex integration</li></ul><h2 id="2f509a25-cc7d-4877-8997-e54b494fefee" class="">Opportunity 3 - Can’t easily track en-primeur wine purchases</h2><p id="5bdcfb55-9d37-49f1-acb9-213ce7289407" class=""><strong>Outcome</strong>:</p><ul id="5a3c7900-fe16-431f-be54-37a823e9c0ac" class="bulleted-list"><li style="list-style-type:disc">users can track en-primeur wine purchases</li></ul><p id="d2ad8f6a-abc3-4337-8cf2-d9bc3ef9639b" class=""><strong>Opportunity</strong>: </p><ul id="f5391ac6-03d2-42d4-a291-8c1cd18c2b19" class="bulleted-list"><li style="list-style-type:disc">Buyers can’t easily track en-primeur purchases</li></ul><p id="f77d467d-98a0-45c2-8f81-647545510aaa" class=""><strong>Solutions</strong>:</p><ul id="1d3817a1-1cd2-4075-af39-504a42da6e15" class="bulleted-list"><li style="list-style-type:disc">Wine shop/distributor to send you a receipt of the purchase</li></ul><ul id="de057ec8-426b-42f1-ace9-c12bbadbb093" class="bulleted-list"><li style="list-style-type:disc">Wineshop login </li></ul><ul id="c609e474-2793-4d9b-a183-0153be5d05c3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal_background">Wine shop/distributor to send you a digital token of the purchase</mark></li></ul><ul id="5db17472-d870-4bd2-a83a-dcaa76cfa4e3" class="bulleted-list"><li style="list-style-type:disc">Winery creates receipt which can be delivered from winery to distributor to customer</li></ul><ul id="f4394988-214b-4ccb-af6c-a8a29eb48fda" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal_background">Login to a webpage to view your purchases</mark></li></ul><p id="0de04719-c1db-4834-aaa6-6746e1b4b0ad" class=""><strong>Experiments</strong></p><p id="f5bfe7a6-149d-4a95-ba7f-ea6033f3ef92" class=""><mark class="highlight-teal_background">Wine shop/distributor to send you a digital token of the purchase</mark></p><ul id="7ac05112-c946-404e-a2d6-b2e751a8ab7a" class="bulleted-list"><li style="list-style-type:disc">10 x user research with websites in AUS that sell en-primeur</li></ul><ul id="f0fa3f3b-2305-4fec-8572-611abdb08064" class="bulleted-list"><li style="list-style-type:disc">10 x user research with buyers who buy en-primeur wine</li></ul><ul id="7049e5f6-3f44-4211-8513-8c31abecea9b" class="bulleted-list"><li style="list-style-type:disc">Figma prototype for widget</li></ul><p id="fbb28c6f-a056-47da-890e-efc4082c0a20" class="">
+</p><h1 id="02fdf975-ae50-4493-b752-3870980e5c58" class="">User Journey Map</h1><figure id="1d518a67-5f21-4199-95a0-6e7d01e876b0" class="image"><a href="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.28.37_pm.png"><img style="width:912px" src="Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94/Screen_Shot_2022-08-14_at_12.28.37_pm.png"/></a></figure></div></article></body></html>

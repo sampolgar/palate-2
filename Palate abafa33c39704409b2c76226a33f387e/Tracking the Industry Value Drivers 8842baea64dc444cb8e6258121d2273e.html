@@ -1,0 +1,825 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tracking the Industry Value Drivers</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8842baea-64dc-444c-b8e6-258121d2273e" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1423483641154-5411ec9c0ddf?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🗞️</span></div><h1 class="page-title">Tracking the Industry Value Drivers</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8f5fb145-f10b-4772-a42a-f872ad6e6d3a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Tracking the industry value drivers, pain points, outcomes and how they currently solve their problems.</div></figure><p id="81f46342-cd0e-435c-b322-985046d6d6a9" class="">
+</p><div id="536e0d95-f837-415d-8f43-ebc554f017b8" class="collection-content"><h4 class="collection-title">Industry Transforming</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Year tech started</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Value Drivers</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Pain</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Outcome</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Required capability</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Tech opportunity</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>put on front page</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Tags</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Added by</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Created</th></tr></thead><tbody><tr id="2c303c33-de2d-42ee-852d-b928d1d38db7"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Livex%20London%20International%20Vintners%20Exchange%202c303c33de2d42ee852db928d1d38db7.html">Livex London International Vintners Exchange</a></td><td class="cell-&lt;sO&lt;">2000</td><td class="cell-3]V&gt;"><a href="https://www.liv-ex.com/" class="url-value">https://www.liv-ex.com/</a></td><td class="cell-QLT]">Global marketplace for wine trade
+- Price Wine Accurately: only source of transactional price information containing over 875 million historic pricing points
+- Buy wine easily: thousands of wines sold
+- Sell globally
+- Data: largest pool of transaction based pricing
+- Assurance: of stock condition
+- Alerts for relevant opportunities</td><td class="cell-rZ;\"><span class="selected-value select-value-color-yellow">standardize wine logistics globally</span><span class="selected-value select-value-color-default">standardize wine prices globally</span><span class="selected-value select-value-color-green">standardize wine purchasing globally</span><span class="selected-value select-value-color-green">standardize wine sales globally</span></td><td class="cell-ZFVH">- unsure of wine price
+- unsure how to sell wine
+- unsure how to buy wine
+- logistics</td><td class="cell-kQ?v">- Buy wine easily: thousands of wines sold
+- Sell globally
+- Data: largest pool of transaction based pricing
+- Assurance: of stock condition
+- Alerts for relevant opportunities
+- settlement and transport services</td><td class="cell-h\k]">- 875 million historic pricing points for wine
+- thousands of products listed at any one time
+- All offers are firm commitments
+- the biggest network of
+trusted buyers
+- See all assured bids for your stock and when a trade completes, receive prompt, weekly payments
+- world’s most comprehensive database of fine wine prices
+- largest pool of independent transaction-based pricing data
+- assured of stock condition
+- offers the world’s largest open-source database of wine information for free
+- settlement and transport services, services charged a flat per unit rate
+- Wine stored in the warehouse can be traded on Liv-ex, without the need to be moved or checked again. Transfer of ownership can be instant.</td><td class="cell-&lt;{jR">Global wine marketplace</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-purple">Wine Trading</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="b5d9e950-0dd7-44eb-a35c-65d9f88ef2f9"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Liv%20ex%20Indicies%20b5d9e9500dd744eba35c65d9f88ef2f9.html">Liv ex Indicies</a></td><td class="cell-&lt;sO&lt;">2003</td><td class="cell-3]V&gt;"><a href="https://www.liv-ex.com/news-insights/indices/liv-ex-fine-wine-1000-indices/" class="url-value">https://www.liv-ex.com/news-insights/indices/liv-ex-fine-wine-1000-indices/</a></td><td class="cell-QLT]">Liv ex indicies tracks the top wines in each class</td><td class="cell-rZ;\"><span class="selected-value select-value-color-orange">increase wine trading</span></td><td class="cell-ZFVH">- not sure if wine investment is a good choice
+- not sure which wine investment is a good choice</td><td class="cell-kQ?v">- find midpoint between the current highest bid price and lowest offer price
+- aggregate trades for an index</td><td class="cell-h\k]">- display weekly/monthly indices stats</td><td class="cell-&lt;{jR">- ETF for wine investment</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-purple">Wine Trading</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="d22b7456-9b88-4bd1-aec9-b3002b451c63"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Weather%20Derivatives%20for%20Wine%20d22b74569b884bd1aec9b3002b451c63.html">Weather Derivatives for Wine</a></td><td class="cell-&lt;sO&lt;">2007</td><td class="cell-3]V&gt;"><a href="https://wine-economics.org/wp-content/uploads/2012/09/AAWE_WP05.pdf" class="url-value">https://wine-economics.org/wp-content/uploads/2012/09/AAWE_WP05.pdf</a></td><td class="cell-QLT]">Study into Weather Derivatives and Icewine production in Canada. Hot weather = No Icewine</td><td class="cell-rZ;\"><span class="selected-value select-value-color-green">hedge risk for vineyards</span></td><td class="cell-ZFVH">- losing a crop due to weather
+- no revenue</td><td class="cell-kQ?v">- hedged risk
+- not broke</td><td class="cell-h\k]">platform for wineries to hedge their crops against weather
+platform for wineries to analyze previous data &amp; predict weather
+platform for wineries to understand optimum weather</td><td class="cell-&lt;{jR">Weather Derivatives</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-gray">Financial Instruments</span><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="fe061095-f91e-4868-a75d-e44361adf0a3"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Liv%20Ex%20LWIN%20fe061095f91e4868a75de44361adf0a3.html">Liv Ex LWIN</a></td><td class="cell-&lt;sO&lt;">2011</td><td class="cell-3]V&gt;"><a href="https://www.liv-ex.com/2014/10/lwin-common-language-fine-wine/" class="url-value">https://www.liv-ex.com/2014/10/lwin-common-language-fine-wine/</a></td><td class="cell-QLT]">Unique and universal identifiers for wine, Liv Ex created LWIN as an industry standard</td><td class="cell-rZ;\"><span class="selected-value select-value-color-orange">increase wine trading</span></td><td class="cell-ZFVH">- lost time writing words
+- mistakes purchasing wrong wine (based on name)
+- written description transferred between buyer and seller
+- falsely selling wine</td><td class="cell-kQ?v">- save time by using a single id
+- enable machine to machine communication through id’s</td><td class="cell-h\k]">- unique identifier for each wine</td><td class="cell-&lt;{jR">- identification
+- searching</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="72b70d36-2a84-422b-ac77-db3106713381"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Liv%20Ex%20Developer%20Solutions%2072b70d362a84422bac77db3106713381.html">Liv Ex Developer Solutions</a></td><td class="cell-&lt;sO&lt;">2015</td><td class="cell-3]V&gt;"><a href="https://www.liv-ex.com/solutions/solutions-developers/" class="url-value">https://www.liv-ex.com/solutions/solutions-developers/</a></td><td class="cell-QLT]"></td><td class="cell-rZ;\"><span class="selected-value select-value-color-orange">increase wine trading</span></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="187f9b96-5c6d-44d9-a7aa-dd9194514301"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Livex%20Automated%20Trading%20187f9b965c6d44d9a7aadd9194514301.html">Livex Automated Trading</a></td><td class="cell-&lt;sO&lt;">2015?</td><td class="cell-3]V&gt;"><a href="https://www.liv-ex.com/2019/07/automated-trading-offers-huge-advantage-liv-ex-members-independent-study/" class="url-value">https://www.liv-ex.com/2019/07/automated-trading-offers-huge-advantage-liv-ex-members-independent-study/</a></td><td class="cell-QLT]">Liv ex automation enables drop-shipping for many online retailers. Liv ex’s API displays the wine on the website with the price. Buyers purchase the wine from their website &amp; the website purchases wine from Liv ex</td><td class="cell-rZ;\"><span class="selected-value select-value-color-orange">increase wine trading</span></td><td class="cell-ZFVH">- not enough inventory for purchasers
+- risks of having inventory and not selling it
+- expensive to keep inventory at premium condition
+- administration to purchasing, storing, selling wine</td><td class="cell-kQ?v">- increased wine offering from 1000 to 10,000
+- inventory decreased 80% 
+- improved cash flow
+- reduced staff
+- increased price per purchase because of available stock</td><td class="cell-h\k]">- wine warehousing offering purchasing API’s to retailers</td><td class="cell-&lt;{jR">- wine warehousing offering purchasing API’s to retailers</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="1377acd0-0cd5-473c-a6d4-025ee7d0deae"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/19%20Crimes%201377acd00cd5473ca6d4025ee7d0deae.html">19 Crimes</a></td><td class="cell-&lt;sO&lt;">2017</td><td class="cell-3]V&gt;"><a href="https://www.youtube.com/watch?v=9pjrl3ORqXM" class="url-value">https://www.youtube.com/watch?v=9pjrl3ORqXM</a></td><td class="cell-QLT]">named wine brand of the year in 2018 offers an Augmented Reality experience with an app called Living Wine Labels connected to the bottle of wine (watch <a href="https://www.youtube.com/watch?v=9pjrl3ORqXM">here</a>). Their wine “The banisher” has an average <a href="https://www.vivino.com/AU/en/treasury-wine-the-banished-dark-red/w/4875658">rating of 4.0</a> on Vivino, a public wine reviewing website. Wines rated 4.0 are the top 1% of wines on Vivino. Conversely, Master of Wine professional<a href="https://youtu.be/yju8sTp78BY?t=832"> Konstantin Baum</a> rated the wine 82 points on the professional wine rating system. 82 points is very low on the professional system, below 80 is deemed undrinkable</td><td class="cell-rZ;\"><span class="selected-value select-value-color-gray">create a community</span><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span></td><td class="cell-ZFVH">- younger consumers are used to digital experiences
+- missing differentiating factor between low price point wine</td><td class="cell-kQ?v">- new digital experience with wine
+- increase value perception
+- create virality</td><td class="cell-h\k]">- label on the bottle
+- smartphone app with camera to recognize bottle label
+- video made per bottle type sold</td><td class="cell-&lt;{jR">- connecting wines with a story
+- using mobile to interact with wine</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="b0161fc8-9ed2-4f72-b253-d52911270e67"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/GFT%20Exchange%20b0161fc89ed24f72b253d52911270e67.html">GFT Exchange</a></td><td class="cell-&lt;sO&lt;">2017</td><td class="cell-3]V&gt;"><a href="https://www.gft.exchange/" class="url-value">https://www.gft.exchange/</a></td><td class="cell-QLT]">The GFT Exchange has removed the barriers of entry for the masses to deliver NFTs worldwide with frictionless ease. Through carrier direct or prepaid billing, NFTs can be distributed to the everyday consumer who can’t be bothered with the technology barriers that plague mass global distribution.</td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="7211ff06-cd1b-4d50-8671-080cbe7e86d0"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Web%203%20Primitives%20for%20physical%20goods%207211ff06cd1b4d508671080cbe7e86d0.html">Web 3 Primitives for physical goods</a></td><td class="cell-&lt;sO&lt;">2018</td><td class="cell-3]V&gt;"></td><td class="cell-QLT]">businesses interacting with the blockchain rely on primitives to simplify the interaction process.
+To create an NFT, developers needed to create a smart contract, upload a file to IPFS or regular storage and mint together.
+Now, developers can access Web3 API’s like Pinata to easily create NFT
+Smart Assets will need the same primitives</td><td class="cell-rZ;\"><span class="selected-value select-value-color-gray">create a community</span><span class="selected-value select-value-color-brown">increase d2c sales</span></td><td class="cell-ZFVH">1) needing to re-invent the wheel for every use case
+1) needing to learn new technologies for every use case
+1) don’t have skills to create smart contracts</td><td class="cell-kQ?v">1) developers understand how to 
+</td><td class="cell-h\k]">1) platform with familiar API’s </td><td class="cell-&lt;{jR">platform for facilitating smart assets</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-yellow">Blockchain/NFT</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="747421ca-fec1-4def-8d51-571d4ee9d62f"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Vinsent%20747421cafec14def8d51571d4ee9d62f.html">Vinsent</a></td><td class="cell-&lt;sO&lt;">2019</td><td class="cell-3]V&gt;"><a href="https://vinsent.wine/" class="url-value">https://vinsent.wine/</a></td><td class="cell-QLT]">Jacob Ner-David’s marketplace business enabling d2c purchasing from vineyards to consumers. Working with blockchain aspects to deliver additional value to customers/consumers</td><td class="cell-rZ;\"><span class="selected-value select-value-color-orange">increase buyer confidence with authenticated wine</span><span class="selected-value select-value-color-brown">increase d2c sales</span></td><td class="cell-ZFVH">- distribution is expensive
+- </td><td class="cell-kQ?v">d2c distribution</td><td class="cell-h\k]">wine marketplace</td><td class="cell-&lt;{jR">marketplace</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-green">Wine Blockchain</span><span class="selected-value select-value-color-red">Wine Provenance Tech</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="c52a25c6-f7c4-47ed-8d7d-f9ec65dc4778"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Blockbar%20c52a25c6f7c447ed8d7df9ec65dc4778.html">Blockbar</a></td><td class="cell-&lt;sO&lt;">2020</td><td class="cell-3]V&gt;"><a href="https://blockbar.com/" class="url-value">https://blockbar.com/</a></td><td class="cell-QLT]">BlockBar is the world’s premier NFT marketplace that connects consumers and collectors with the owners of luxury wine and spirits brands by providing the opportunity to exchange NFTs for unique physical wine and spirits products
+BlockBar’s proprietary platform allows consumers to purchase asset backed NFTs directly from BlockBar. BlockBar&#x27;s smart contracts verify authenticity, and its partnership with top cyber- and crypto-security firms ensures that transactions are fully protected and transparent. Consumers are able to transact directly with Blockbar to access the brands and no longer have to worry about authenticity or storage.</td><td class="cell-rZ;\"><span class="selected-value select-value-color-red">decrease reselling time</span><span class="selected-value select-value-color-purple">decrease storage costs</span><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span><span class="selected-value select-value-color-orange">increase physical good value with art</span></td><td class="cell-ZFVH">1) engaging sales &amp; marketing to gen z
+1) transaction speed &amp; speed to receive goods, gen z want it now
+
+2) buying fake wine
+2) storing wine at optimal conditions
+
+3) connecting buyers and sellers
+
+4) find new interactions with target market
+
+5) NFT’s are “complicated”
+5) no tech resources to create NFT</td><td class="cell-kQ?v">1) easy sale, transfer of goods ownership between parties
+1) Net worth easily calculated, easily displayed
+
+2) authentic wine sales
+2) wine provenance and quality guaranteed
+
+3) buyer and seller marketplace</td><td class="cell-h\k]">1) digital asset platform
+2) provenance guarantee
+2) storage and storage condition guarantee
+3) decentralized marketplace
+4) modern platform
+5) blockchain native tech</td><td class="cell-&lt;{jR">1) Blockbar and other similar companies will need an underlying primitive to interact with crypto. 
+Immutable, Pinata, Filebase have mechanisms for IPFS &amp; Smart Contract.
+Smart Assets need to interact with these with the physical reality
+4) decentralized physical ownership
+5) create NFT minting mechanism. The NFT’s and buying mechanism are available as an iframe on the customers website offering D2C wines purchasable</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-green">Wine Blockchain</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="624bc3ca-1229-4910-aa05-d8696e0a3f31"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Luxury%20category%20changes%20624bc3ca12294910aa05d8696e0a3f31.html">Luxury category changes</a></td><td class="cell-&lt;sO&lt;">2020</td><td class="cell-3]V&gt;"><a href="https://www.adnews.com.au/news/penfolds-first-nft-venture-sold-out-in-seconds" class="url-value">https://www.adnews.com.au/news/penfolds-first-nft-venture-sold-out-in-seconds</a></td><td class="cell-QLT]">- In luxury, Gen Z are going to make up 60% of luxury sales in a matter of five or so years. The luxury category has changed significantly. There are people who drink wine that don’t necessarily care about the terroir but are happy to spend $950 on a bottle to celebrate their wedding anniversary.
+“So we have to ensure we are embracing what we call the ‘new world luxury’. We need to engage with them in a new way, it’s all about being surprising, disruptive, culture-led which is so different to where we have been.”</td><td class="cell-rZ;\"><span class="selected-value select-value-color-red">sell and market to different demographic</span></td><td class="cell-ZFVH">- marketing tactics haven’t changed in years
+- bottles of wine have a short customer experience e.g. buy and drink
+- difficult to market products to gen z</td><td class="cell-kQ?v">- marketing channel for gen z
+- purchasing decision for gen z
+- </td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="76fc051f-ea48-47d1-9d78-d9d7af5bb5de"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Yao%20Family%20Wines%20(Yao%20Ming)%2076fc051fea4847d19d78d9d7af5bb5de.html">Yao Family Wines (Yao Ming)</a></td><td class="cell-&lt;sO&lt;">2021</td><td class="cell-3]V&gt;"><a href="https://yaofamilywines.com/" class="url-value">https://yaofamilywines.com/</a></td><td class="cell-QLT]">Releasing most exclusive wine “The Chop” paired with a limited edition NFT.
+</td><td class="cell-rZ;\"><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span><span class="selected-value select-value-color-red">sell and market to different demographic</span></td><td class="cell-ZFVH">??</td><td class="cell-kQ?v">NFT wine</td><td class="cell-h\k]">Platform to mint NFT, similar to what they used GFT.exchange?</td><td class="cell-&lt;{jR">platform to mint NFT</td><td class="cell-mge:"><span class="selected-value select-value-color-default">no</span></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="cd95b4d8-f6fe-4b56-a109-0f6e7e345ba2"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Rapsody%20Spirits%20cd95b4d8f6fe4b56a1090f6e7e345ba2.html">Rapsody Spirits</a></td><td class="cell-&lt;sO&lt;">2021</td><td class="cell-3]V&gt;"><a href="https://www.nftqt.com/wine-nfts-a-barrel-of-wine-sold-for-110k/" class="url-value">https://www.nftqt.com/wine-nfts-a-barrel-of-wine-sold-for-110k/</a></td><td class="cell-QLT]">Rapsody spirits use NFT’s as a digital representation of a physical collected good. 
+Using the NFT as an access token, invites for exclusive tastings, parties, discounts and other premiere experiences.</td><td class="cell-rZ;\"><span class="selected-value select-value-color-gray">create a community</span><span class="selected-value select-value-color-brown">increase d2c sales</span></td><td class="cell-ZFVH">- connect with consumers
+- market to existing consumers</td><td class="cell-kQ?v">- connection with existing consumers
+- created a mechanism to increase sales to previous buyers</td><td class="cell-h\k]">- traceable community
+- messaging through ownership</td><td class="cell-&lt;{jR">NFT with bottle purchase as a community token</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-green">Wine Blockchain</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="2730b96e-856f-4c36-8768-5c661e5efa0a"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Domaine%20du%20Comte%20Liger-Belair%202730b96e856f4c3687685c661e5efa0a.html">Domaine du Comte Liger-Belair</a></td><td class="cell-&lt;sO&lt;">2021</td><td class="cell-3]V&gt;"><a href="https://www.winespectator.com/articles/the-man-waking-up-burgundy-s-elite" class="url-value">https://www.winespectator.com/articles/the-man-waking-up-burgundy-s-elite</a></td><td class="cell-QLT]">one of Burgundy’s most famed producers auctioned a bottle from each 2020 cuvee (wine type), each with an NFT containing a 90-second film of owner Louis-Michel talking about the vineyard it was grown and the vintage conditions. The bottles sold for twice the retail price. Louis-Michel wants to offer a piece of art with the bottle so “buyers at least have a movie of their own after the wine is gone”</td><td class="cell-rZ;\"><span class="selected-value select-value-color-gray">create a community</span><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span></td><td class="cell-ZFVH">- once a wine is drunk, it’s lost value
+- low/no vineyard/wine maker/customer engagement when buying/selling wine
+- connect with wine lovers</td><td class="cell-kQ?v">- develop a connection with the wine drinkers
+- educate on the vineyard and vintage to cultivate a connection
+- deliver value outside the wine </td><td class="cell-h\k]">- NFT creation
+- create/edit/upload photo/video
+- mechanism to connect bottle to NFT (QR?)</td><td class="cell-&lt;{jR">- software for wine industry to create NFT
+- software/hardware to connect bottles to NFT</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-yellow">Blockchain/NFT</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="67df0553-247a-4b8e-aaa6-161bf75b3ec7"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Cult%20Wines%20&amp;%20Chateau%20Angelus%2067df0553247a4b8eaaa6161bf75b3ec7.html">Cult Wines &amp; Chateau Angelus</a></td><td class="cell-&lt;sO&lt;">2021</td><td class="cell-3]V&gt;"><a href="https://www.businesswire.com/news/home/20210712005180/en/Cult-Wines-Releases-NFT-of-Original-Digital-Artwork-Bordeaux-En-Primeur-Together-With-Chateau-Ang%C3%A9lus" class="url-value">https://www.businesswire.com/news/home/20210712005180/en/Cult-Wines-Releases-NFT-of-Original-Digital-Artwork-Bordeaux-En-Primeur-Together-With-Chateau-Ang%C3%A9lus</a></td><td class="cell-QLT]">Bordeaux Chateau Angelus releases an NFT digital artwork together with a barrel of Bordeaux En Primeur. The artwork is a 3d image of a bell at the Chateaux.
+I think the use case for this is to capitalize on the crypto market peak hysteria. The artwork isn’t great.
+The NFT is basically a certificate of ownership as well as a ticket to tasting/vineyard experience.
+During the two-year ageing process, the owner of the NFT** will be invited to Chateau Angélus to take part in the wine’s journey from vineyard to bottle. The buyer will be invited to a virtual tasting with<em><strong> </strong></em>
+Stéphanie de Boüard-Rivoal, Chateau Angélus CEO and Co-Owner, and a VIP experience during harvest 2021, including a personal wine pairing and cooking class with doubly appointed Michelin star Chef Alexandre Baumard at the celebrated ‘Le Logis de la Cadène’ in Saint Emilion and renowned ‘Le Gabriel’ in Bordeaux.</td><td class="cell-rZ;\"><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span></td><td class="cell-ZFVH">- finding new market
+- sell something other than wine</td><td class="cell-kQ?v">- Sell alternative services i.e. winery tour and cooking class
+- Open market to new purchasers</td><td class="cell-h\k]">- list NFT
+- create digital artwork
+- Link NFT ownership to ticket to winery</td><td class="cell-&lt;{jR">Using technology to enhance today’s value proposition</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-green">Wine Blockchain</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="276afc2b-a0db-4c4a-a642-690a13c1e79e"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Robert%20Mondavi%20276afc2ba0db4c4aa642690a13c1e79e.html">Robert Mondavi</a></td><td class="cell-&lt;sO&lt;">2022</td><td class="cell-3]V&gt;"><a href="https://nft.robertmondaviwinery.com/pages/nft" class="url-value">https://nft.robertmondaviwinery.com/pages/nft</a></td><td class="cell-QLT]">Winery &amp; porcelain house formed a partnership to celebrate the vineyard.
+Created 1966 bottles with custom porcelain and custom wine blends, sold via NFT’s created by a generative artist.
+The NFT will redeem the wine bottle when its ready</td><td class="cell-rZ;\"><span class="selected-value select-value-color-gray">create a community</span><span class="selected-value select-value-color-orange">increase buyer confidence with authenticated wine</span><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span></td><td class="cell-ZFVH">1) selling en-premieur wine creates ownership and paperwork issues
+2) selling super premium wines in the “normal” way doesn’t entice spenders to spend more
+3) finding new generation/demographic of wine buyers
+4) ensuring the winery spends time/resources with their most important/profitable customers
+5) fake wine problems</td><td class="cell-kQ?v">1) system to sell, track, and manage ownership of wine futures (en-premieur)
+1) system to track previous en-premieur purchases and if owners are reselling or storing (if reselling, check resale price, etc)
+2) new method to buy wine (can also be negative outcome for more experienced buyers)
+3) new marketing avenue for existing business
+4) strengthened community engagement with social token
+5) registered wine for authenticity, provenance</td><td class="cell-h\k]">1) system to create NFT to represent physical good
+1) system to swap NFT for physical good
+1) system to enable selling/swapping NFT
+2) system to create unique generative art to represent the bottle
+2) system to link physical good with something
+3) adaptive system to change for the most in-demand technology to serve the industry
+3) adaptive, technology focused solution targeting younger demographic
+4) system to create NFT to represent physical good
+5) mechanism to link physical bottle to blockchain e.g. qr code, barcode, etc</td><td class="cell-&lt;{jR">1) shopify-like system to create tools and experiences for the wine industry
+4) wine community membership system
+5) inserting technology inside supply chain</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-green">Wine Blockchain</span><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="9db51e9c-1cca-49b7-920a-5d18a7f04478"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Stockx%20NFT%209db51e9c1cca49b7920a5d18a7f04478.html">Stockx NFT</a></td><td class="cell-&lt;sO&lt;">2022</td><td class="cell-3]V&gt;"><a href="https://stockx.com/lp/nfts/" class="url-value">https://stockx.com/lp/nfts/</a></td><td class="cell-QLT]">physical products in climate controlled warehouses on-chain</td><td class="cell-rZ;\"><span class="selected-value select-value-color-blue">decrease reselling costs</span><span class="selected-value select-value-color-red">decrease reselling time</span><span class="selected-value select-value-color-purple">decrease storage costs</span><span class="selected-value select-value-color-orange">increase buyer confidence with authenticated wine</span></td><td class="cell-ZFVH">1) buying fake shoes
+2) buying shoes, storing them in a closet
+2) buying shoes, getting mould on them
+3) sending shoes in to be resold, getting them authenticated again
+3) time spent needed to authenticate a resale</td><td class="cell-kQ?v">1) authenticated shoes
+2) storage in purpose built facilities
+3) stockx takes care of all reselling requirements</td><td class="cell-h\k]">1) authentication service
+2) storage feature
+3) reselling feature</td><td class="cell-&lt;{jR">1) back-end platform for existing marketplaces to trade their assets as blockchain goods</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-yellow">Blockchain/NFT</span><span class="selected-value select-value-color-pink">Circular Economy</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="ed56ceef-681b-4906-9e0f-158574d19804"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Penfolds%20ed56ceef681b49069e0f158574d19804.html">Penfolds</a></td><td class="cell-&lt;sO&lt;">2022</td><td class="cell-3]V&gt;"><a href="https://www.penfolds.com/en-au/about-penfolds/collaborations/blockbar-third-nft.html" class="url-value">https://www.penfolds.com/en-au/about-penfolds/collaborations/blockbar-third-nft.html</a></td><td class="cell-QLT]">Penfolds partners with Blockbar, D2C NFT marketplace
+We attached it to a gifting platform so you can gift the NFT which is a big recruiter for the wine industry. That sold out in a matter of hours.
+Tying value creation into repeat customers “if the auction winner is a previous Penfolds NFT owner (original buyer via <a href="http://blockbar.com/">BlockBar.com</a>) they will also receive a complimentary luxury Superblend 802.A and 802.B Decanter.”</td><td class="cell-rZ;\"><span class="selected-value select-value-color-brown">increase d2c sales</span><span class="selected-value select-value-color-pink">increase perceived wine value with digital</span><span class="selected-value select-value-color-red">sell and market to different demographic</span></td><td class="cell-ZFVH">- D2C sales
+- Engaging Gen Z
+- engaging gifts</td><td class="cell-kQ?v">- improved D2C sales
+- expanded demographic
+- focused on new market</td><td class="cell-h\k]">- d2c website
+- gifting platform
+- digital experiences</td><td class="cell-&lt;{jR">Platform to enable D2C
+Platform to enable gifting &amp; digital experiences for ageing industry</td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-yellow">Blockchain/NFT</span><span class="selected-value select-value-color-green">Wine Blockchain</span><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="796a80ad-918c-401d-9a09-1ee2e3ea379a"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Chai%20Vault%20796a80ad918c401d9a091ee2e3ea379a.html">Chai Vault</a></td><td class="cell-&lt;sO&lt;">2022</td><td class="cell-3]V&gt;"><a href="https://futuredrinksexpo.com/en/blog/insights-64/chai-vault-wages-war-against-fake-wines-spirits-284.htm" class="url-value">https://futuredrinksexpo.com/en/blog/insights-64/chai-vault-wages-war-against-fake-wines-spirits-284.htm</a></td><td class="cell-QLT]">Hardware can provide a solution to temperature, humidity, wine condition</td><td class="cell-rZ;\"><span class="selected-value select-value-color-yellow">decrease fake bottles on market</span><span class="selected-value select-value-color-orange">increase buyer confidence with authenticated wine</span></td><td class="cell-ZFVH">1) fake bottles
+2) damaged bottles
+3) reselling confidence</td><td class="cell-kQ?v">1) authenticity and provenance without scanning or inspecting
+2) bottle inspection via 90 individual identifiers
+3) URL to authenticity mark
+3) retailers can promote authentic wine
+3) brand trust</td><td class="cell-h\k]">1) method to certify authenticity and provenance (Chai method developed by Maureen is a manual process by certified Chai Method inspectors)
+2) technology integrated to workflows
+3) URL with blockchain authenticity</td><td class="cell-&lt;{jR">1) automating Chai Method processes to authenticate reselling wine </td><td class="cell-mge:"><span class="selected-value select-value-color-pink">yes</span></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-red">Wine Provenance Tech</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="0dad6e77-4653-4c3b-9332-a12364565173"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Metaverse%20focus%20on%20retail%200dad6e7746534c3b9332a12364565173.html">Metaverse focus on retail</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"><a href="https://blog.richardvanhooijdonk.com/en/the-metaverse-blurring-the-lines-between-our-physical-and-virtual-worlds/" class="url-value">https://blog.richardvanhooijdonk.com/en/the-metaverse-blurring-the-lines-between-our-physical-and-virtual-worlds/</a></td><td class="cell-QLT]">Companies look for ways to bridge retail and metaverse</td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-yellow">Blockchain/NFT</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="ed372c90-2b1c-47cb-9c20-22b18bce2d54"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/DTC%20wine%20growth%20(Australia)%20ed372c902b1c47cb9c2022b18bce2d54.html">DTC wine growth (Australia)</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"><a href="https://www.wineaustralia.com/market-insights/wine-direct-to-consumer-survey-repo" class="url-value">https://www.wineaustralia.com/market-insights/wine-direct-to-consumer-survey-repo</a></td><td class="cell-QLT]">DTC growth 17% YOY. Online growth 23% YOY (avg value declined) Cellar Door 44% DTC</td><td class="cell-rZ;\"><span class="selected-value select-value-color-brown">increase d2c sales</span></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"><span class="selected-value select-value-color-blue">Wine Industry General</span></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="7bc0fabd-edf0-43f6-b600-742f35430210"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/WINE%20protocol%207bc0fabdedf043f6b600742f35430210.html">WINE protocol</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"></td><td class="cell-QLT]"></td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="839145cc-2116-43c2-956a-1acab014f035"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Mattereum%20fiat%20property%20meets%20crypto%20exchange%20839145cc211643c2956a1acab014f035.html">Mattereum fiat property meets crypto exchange</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"></td><td class="cell-QLT]"></td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="c5c280ed-4f7b-4990-9622-b9d86f687d99"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/NFTs%20are%20the%20financialization%20transport%20layer%20for%20%20c5c280ed4f7b49909622b9d86f687d99.html">NFTs are the financialization transport layer for intangibles then off-chain assets</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"></td><td class="cell-QLT]"></td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr><tr id="d9a82ac8-c036-4767-bd8d-4205193cd892"><td class="cell-title"><a href="Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e/Industry%20Transforming%20536e0d95f837415d8f43ebc554f017b8/Friends%20Of%20Dionysus%20Wine%20Club%20d9a82ac8c0364767bd8d4205193cd892.html">Friends Of Dionysus Wine Club</a></td><td class="cell-&lt;sO&lt;"></td><td class="cell-3]V&gt;"></td><td class="cell-QLT]"></td><td class="cell-rZ;\"></td><td class="cell-ZFVH"></td><td class="cell-kQ?v"></td><td class="cell-h\k]"></td><td class="cell-&lt;{jR"></td><td class="cell-mge:"></td><td class="cell-&lt;hf^"></td><td class="cell-czCp"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GjbnNecGUOuTVvgZ1k1XFMycOQ6veH4pF2Zdx5W6w=s100" class="icon user-icon"/>Samuel Polgar</span></td><td class="cell-TRoT"><time>@August 14, 2022 2:10 PM</time></td></tr></tbody></table></div><p id="1da2c99e-fffe-4df6-9a5d-6e437a9452d5" class="">
+</p></div></article></body></html>

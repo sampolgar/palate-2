@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Personas</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f0b10c1a-4f07-4722-b69f-1f79b9f04d3b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🧑</span></div><h1 class="page-title">Personas</h1></header><div class="page-body"><nav id="199d2d65-8081-47e1-8512-2cf78c1a2b21" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3ea4918f-2060-4c3d-97de-4b81dbc054e4">Buyer Persona 1</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a31af01e-5382-4f94-b670-b12b0164e0ba">John Roberts</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e0e3d289-90be-4b47-b0a2-206172aced86">Personal Information</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6ec2671c-75a4-4ee9-800f-a31fef386a52">Buyer Persona 2</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d215b15e-9413-4a29-96e4-b8c7d5613905">Jenny’s Fine Wines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d7bf59e3-90ce-496e-bf92-e4a325ffe43f">Personal Information</a></div></nav><h1 id="3ea4918f-2060-4c3d-97de-4b81dbc054e4" class="">Buyer Persona 1</h1><h2 id="a31af01e-5382-4f94-b670-b12b0164e0ba" class="">John Roberts</h2><figure id="e307d956-320c-40dd-8a2d-544b0d367859" class="image"><a href="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled.png"><img style="width:192px" src="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled.png"/></a></figure><h2 id="e0e3d289-90be-4b47-b0a2-206172aced86" class="">Personal Information</h2><p id="ae77c37f-b8d7-4b0d-a809-841f67df27ce" class=""><strong>Name</strong>: John Roberts</p><p id="91dbc300-fd91-4108-b487-f0796dbc17f0" class=""><strong>Age</strong>: 33</p><p id="6ca17ba7-6997-4bc8-922f-9107866e62a6" class=""><strong>Occupation</strong>: Team Lead - Investment Analyst</p><p id="2604f235-adc0-4f89-9c70-f54b001068c2" class=""><strong>Location</strong>: London, UK</p><p id="382a474a-2490-4be4-b6d6-e21d3b9adc96" class=""><strong>Marital status</strong>: Married, 1 child</p><p id="67603f63-7af0-4ae0-b3e3-826e717c8db0" class=""><strong>Salary</strong>: $170K</p><p id="a76c97e3-9f24-499a-bb90-f661c8a3f43d" class=""><strong>Biography: </strong>John moved to London to start university at the London School of Economics. Since graduating, John’s worked at investment firms for some of Londons private equity firms. John met his wife at a previous workplace and married at 30 years of age. They’ve been living together since 28 and now have a baby girl. John first tasted nice wine at 27 years old when celebrating the end of financial year, since then, he’s been hooked.</p><p id="73281af1-0441-4d67-830f-a762710d1a5a" class="">John purchases 3 cases of Bordeaux en-primeur each year and often loses track of where he buys it from and when he can redeem it.</p><p id="e62eb66e-8903-46e2-915d-b9076e0d4508" class=""><strong>Personal Interests</strong></p><ul id="6f3a8992-b769-4409-b99c-b23a68f40ba2" class="bulleted-list"><li style="list-style-type:disc">Triathlon</li></ul><ul id="dd127cb0-8d5d-4b4a-a4bc-cbc2dab29c49" class="bulleted-list"><li style="list-style-type:disc">Travelling</li></ul><ul id="29897f8b-989f-44db-b369-821c2a2bf21b" class="bulleted-list"><li style="list-style-type:disc">Gym</li></ul><ul id="3527bd1d-e851-49f7-814c-032f489b487e" class="bulleted-list"><li style="list-style-type:disc">Cooking</li></ul><ul id="3c45ea24-1256-4891-bcd1-11f51665c4e2" class="bulleted-list"><li style="list-style-type:disc">Wine</li></ul><p id="1dc6ea05-6cbe-49a2-aa18-d51ee1091fc8" class="">
+</p><p id="6ff3b47e-a41c-41b9-b42f-4e454371666c" class=""><strong>Behavioural traits</strong></p><ul id="83f1c7c2-07b6-4dac-bed6-251d93386421" class="bulleted-list"><li style="list-style-type:disc">Strong Vivino presence</li></ul><ul id="2b9dfe89-7bca-4a00-91ff-3a16ca93f476" class="bulleted-list"><li style="list-style-type:disc">Frequent online shopping</li></ul><ul id="9a953ea5-b2d3-4780-a3af-d389db927b11" class="bulleted-list"><li style="list-style-type:disc">Receives email marketing for wine shops and distributors</li></ul><ul id="157276b6-4baf-4305-b34a-a0558f5d0e6a" class="bulleted-list"><li style="list-style-type:disc">Interacts on Reddit</li></ul><p id="6c4c7163-f379-4518-a54c-0ec950885019" class="">
+</p><p id="ff051664-7661-4021-8d6a-982bfe7a85f9" class=""><strong>Goals</strong></p><ul id="11b8895b-95ef-4eac-939e-1220f68e3b51" class="bulleted-list"><li style="list-style-type:disc">2000 bottle wine cellar</li></ul><ul id="88066bea-2885-4aa5-ba48-238f97d5402e" class="bulleted-list"><li style="list-style-type:disc">Become a partner at a VC fund</li></ul><ul id="b1e78360-bc87-474f-9e71-374c978d6152" class="bulleted-list"><li style="list-style-type:disc">Spend time with friends and family</li></ul><ul id="4b809da2-2cff-438f-8e9d-49c3a937e2e0" class="bulleted-list"><li style="list-style-type:disc">Eat at fine dining once a week</li></ul><ul id="c199962a-b5ce-40e7-b09c-ee068913c386" class="bulleted-list"><li style="list-style-type:disc">Complete first half ironman</li></ul><p id="90de78f2-424c-4ce4-a52c-9ad6443c6b8e" class=""><strong>Challenges</strong></p><ul id="ae3a0885-a4ad-42ea-969f-eb5d17a5db33" class="bulleted-list"><li style="list-style-type:disc">Working hard and long hours</li></ul><ul id="e4495fe9-b04b-4d47-a465-22a07e9f2c03" class="bulleted-list"><li style="list-style-type:disc">No time to organise current wine cellar</li></ul><ul id="eea9ddb9-7f31-4725-ac5e-c6c1c6191cde" class="bulleted-list"><li style="list-style-type:disc">Struggles with balancing responsibilities as a parent, husband, and team leader at work</li></ul><p id="5e833818-0317-42cd-af39-a100e70e9eab" class="">
+</p><p id="b0665dc5-d163-4303-9a07-dd65c9d3c5ed" class=""><strong>Objections</strong></p><ul id="78c2ca86-37f7-46bc-9fe6-2b1cbf0ba389" class="bulleted-list"><li style="list-style-type:disc">Not having enough time with family</li></ul><ul id="66d24746-5907-4864-be76-505f16c58e62" class="bulleted-list"><li style="list-style-type:disc">Not having time to create an inventory of wine, no time to add it to a cellar tracker</li></ul><ul id="ca79720f-a550-45e4-b08a-7de29156b036" class="bulleted-list"><li style="list-style-type:disc">Being put on a strict budget for the finer things in life</li></ul><ul id="6b170d6d-b35e-4f4a-ba03-ded985741af3" class="bulleted-list"><li style="list-style-type:disc">Not being able to exercise</li></ul><p id="f6f9f19a-5157-46ae-855b-4ca8cabda496" class="">
+</p><h1 id="6ec2671c-75a4-4ee9-800f-a31fef386a52" class="">Buyer Persona 2</h1><h2 id="d215b15e-9413-4a29-96e4-b8c7d5613905" class="">Jenny’s Fine Wines</h2><figure id="13c88e18-db90-4bc5-9813-858d22bfced6" class="image"><a href="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled%201.png"><img style="width:432px" src="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled%201.png"/></a></figure><h2 id="d7bf59e3-90ce-496e-bf92-e4a325ffe43f" class="">Personal Information</h2><figure id="259f44e2-618e-4082-b9e6-f592d210af28" class="image"><a href="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled%202.png"><img style="width:290px" src="Personas%20f0b10c1a4f074722b69f1f79b9f04d3b/Untitled%202.png"/></a></figure><p id="5e8c63f6-bafa-4a74-8cce-0087e77c6201" class=""><strong>Name</strong>: Jenny Murphy</p><p id="78cdbb97-2d0f-4a41-a1ce-49a051d5d2a0" class=""><strong>Age</strong>: 54</p><p id="48ccd687-2dfd-4228-9583-89ff0a61579e" class=""><strong>Occupation</strong>: Founder, Jenny’s Fine Wines</p><p id="a6b9449b-5593-412d-82a2-daaa4e767dc3" class=""><strong>Location</strong>: New York</p><p id="548b5179-7bbf-4d80-b270-f9b1ed635254" class=""><strong>Marital status</strong>: Married, 3 grown children</p><p id="fcecd624-24e9-4ef5-8ff6-4dd7c0e382c6" class=""><strong>Company Revenue:</strong> $25M, mostly online</p><p id="c2347468-d0d2-494a-84d1-965f7c0d5b80" class="">Biography: Jenny founded Jenny’s Fine WInes 20 years ago and since had loyal clientelle and expanded throughout New York City. Jenny’s is famous for Bordeaux En-Primeur wines, selling over 10,000 bottles every year to various clients.</p><p id="e8c63339-c8f2-47bb-b5c7-1c0944cb9d5a" class="">Jenny has a family, Husband, 3 children aged 18, 21, 26 and 2 dogs she walks every morning before work. Jenny hasn’t spent long behind a computer as her executive assistant runs most of her day to day life and her brother runs the accounting services. </p><p id="7a4be811-a90b-4c9a-8cd9-190524b55ed6" class="">Jenny wonders how she can keep growing the business and increase efficiencies to put the business in-good steed for the next generation as she plans to retire in 10 years.</p><p id="2d356979-1bd7-4aee-96a1-c7dd43a86de8" class="">
+</p><p id="fc942486-2f20-45af-ab7c-a3601fd5be03" class=""><strong>Personal Interests</strong></p><ul id="58242062-8c5c-4093-aedb-6e93b8b6d50d" class="bulleted-list"><li style="list-style-type:disc">Spending time with family</li></ul><ul id="38e62ae7-aa61-4b8c-9d07-7d0dcc9be05b" class="bulleted-list"><li style="list-style-type:disc">Travelling</li></ul><ul id="a2e31d6b-857c-4e6f-812e-8dde47b8db53" class="bulleted-list"><li style="list-style-type:disc">Pilates</li></ul><ul id="73b7e4db-4053-42a6-9d8d-73b8640f4cc9" class="bulleted-list"><li style="list-style-type:disc">Cooking</li></ul><ul id="215fbcc3-7540-4a57-a06c-ccba615fdb1d" class="bulleted-list"><li style="list-style-type:disc">Wine</li></ul><p id="492580a3-7b79-492b-a972-af52c86bcc3e" class="">
+</p><p id="45126c28-a439-4027-bd72-90379e95bafb" class=""><strong>Behavioural traits</strong></p><ul id="fe5f3bd6-fefb-4b66-a17c-7188bce455e3" class="bulleted-list"><li style="list-style-type:disc">No </li></ul><ul id="235b42fd-16e5-432f-a99d-95fb3b6f0e39" class="bulleted-list"><li style="list-style-type:disc">Mainly works with an Executive Assistant </li></ul><ul id="53ac889e-b319-4fdb-b8b2-2c4944f03d9d" class="bulleted-list"><li style="list-style-type:disc">Isn’t very technologically literate</li></ul><p id="8301e808-f557-4e55-829a-ff0528619068" class="">
+</p><p id="f0df894b-630b-45ce-9f1a-9426a7c838bd" class=""><strong>Goals</strong></p><ul id="e2a2f297-6e09-435d-8e6a-38b6b33559cf" class="bulleted-list"><li style="list-style-type:disc">Retire in 10 years</li></ul><ul id="2d2e37a3-f732-48d4-9229-91fce42dff22" class="bulleted-list"><li style="list-style-type:disc">Continue to successfully run Jenny’s fine wine</li></ul><ul id="a0f12a80-4098-4b0e-9240-726869768dc5" class="bulleted-list"><li style="list-style-type:disc">Spend time with friends and family</li></ul><ul id="479ac082-a086-435d-9ab7-16b93540dffd" class="bulleted-list"><li style="list-style-type:disc">Enjoy fine food and fine wine</li></ul><p id="7ce83233-c253-47cf-ac07-096e499bd5e0" class=""><strong>Challenges</strong></p><ul id="578ea0e4-a717-4c90-b8d2-f28209091c70" class="bulleted-list"><li style="list-style-type:disc">Keep clientele returning</li></ul><ul id="805e2602-6150-4f97-8acd-94d2dac77190" class="bulleted-list"><li style="list-style-type:disc">Capture new clientele</li></ul><ul id="9daa8ea0-01ad-4162-8020-9015442e2b46" class="bulleted-list"><li style="list-style-type:disc">Grow Jenny’s Fine WInes to $30M revenue</li></ul><ul id="8ea817df-ee74-44a7-91f9-8d55d81097bf" class="bulleted-list"><li style="list-style-type:disc">Make Jenny’s Fine Wines more efficient</li></ul><p id="c880bc9b-67ba-4dff-b813-a609a922b6c1" class="">
+</p><p id="be878b19-5c17-42d1-a1d0-d3dcbdef7901" class=""><strong>Objections</strong></p><ul id="9069229c-e6d0-497b-a875-f4725fe4b25b" class="bulleted-list"><li style="list-style-type:disc">Overworking</li></ul><ul id="99633bd5-be45-4fc7-916a-9d7866f07bb8" class="bulleted-list"><li style="list-style-type:disc">Being involved in day to day operations</li></ul><ul id="4015ff85-ee2c-4ca6-a0e4-767501d8c1c3" class="bulleted-list"><li style="list-style-type:disc">Creating additional work for employees</li></ul></div></article></body></html>

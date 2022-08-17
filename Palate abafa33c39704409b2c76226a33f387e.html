@@ -1,0 +1,673 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Palate</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="373b9dcb-0f89-4a04-a0b9-0f32ee43cb1f" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🍇</span></div><h1 class="page-title">Palate</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b848c1da-3435-4ec2-aa3b-e79e7284af9c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Through our time researching, conducting customer interviews, and industry analysis, we will lay Palate to rest for now and move forwards with a problem in an adjacent industry that we discovered during research and customer interviews. 
+
+We’ll outline our thoughts on the current state of the wine &amp; blockchain industry and our reasons for moving forwards.</div></figure><div id="70b274ea-a723-4e06-8456-332ed2106434" class="column-list"><div id="da2c350b-585a-4536-b4fa-3b0a9d1d7723" style="width:50%" class="column"><h2 id="5f3bf75a-0e6e-49cc-a7a1-fe25bd36e92d" class="">The Background</h2><figure id="456dbf48-13bf-4eb4-9f73-539ce07ebe85" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/What%20We%E2%80%99re%20Building%20and%20Why%20456dbf4813bf4eb49f73539ce07ebe85.html"><span class="icon">🔨</span>What We’re Building and Why?</a></figure><figure id="8842baea-64dc-444c-b8e6-258121d2273e" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Tracking%20the%20Industry%20Value%20Drivers%208842baea64dc444cb8e6258121d2273e.html"><span class="icon">🗞️</span>Tracking the Industry Value Drivers</a></figure><figure id="1c0355c3-b012-4f13-bc4b-91bb884e67ba" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Problem%20Discovery%201c0355c3b0124f13bc4b91bb884e67ba.html"><span class="icon">💡</span>Problem Discovery</a></figure><figure id="9b20cfea-ca16-4bc4-95f7-35d222f394ba" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Market%20Profiles%209b20cfeaca164bc495f735d222f394ba.html"><span class="icon">🌏</span>Market Profiles</a></figure><figure id="90887546-cce2-4964-bd92-fca66f9f4d4f" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Industry%20Peers%2090887546cce24964bd92fca66f9f4d4f.html"><span class="icon">👬</span>Industry Peers</a></figure><figure id="c41faa5d-7088-46e8-84ee-a988e94c25e8" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/User%20Research%20DB%20c41faa5d708846e884eea988e94c25e8.html"><span class="icon">🔬</span>User Research DB</a></figure><figure id="08e41222-f3d4-492c-9570-8bb6502610cc" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Industry%20News%2008e41222f3d4492c95708bb6502610cc.html"><span class="icon">🗞️</span>Industry News</a></figure></div><div id="7493c967-dd33-4db6-b92b-b9764f0f8f6f" style="width:49.99999999999999%" class="column"><h2 id="e1ea3454-4b20-4e83-9a08-bb4f977c8ded" class="">Product</h2><figure id="50463615-5caa-465b-8b86-9243280a6802" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/OKR%20Roadmap%20504636155caa465b8b869243280a6802.html"><span class="icon">📈</span>OKR Roadmap</a></figure><figure id="a7ebd214-54f8-4d0b-a4c4-c912126cc222" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/User%20Research%20a7ebd21454f84d0ba4c4c912126cc222.html"><span class="icon">🔬</span>User Research</a></figure><figure id="f0b10c1a-4f07-4722-b69f-1f79b9f04d3b" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Personas%20f0b10c1a4f074722b69f1f79b9f04d3b.html"><span class="icon">🧑</span>Personas</a></figure><figure id="a4c0224b-18a8-481e-b592-e46ad1e09c94" class="link-to-page"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Testing%20Hypotheses%20a4c0224b18a8481eb592e46ad1e09c94.html"><span class="icon">🧪</span>Testing Hypotheses</a></figure></div></div><h1 id="b1be960e-c227-412d-9a49-2843e53d6271" class="">Post-Mortem</h1><h2 id="de901f2f-a67e-4d1b-b1cd-1c0213a0a956" class=""><strong>Thoughts of Wine &amp; Blockchain in 2022</strong></h2><p id="984a4f78-f0bf-4835-9b34-07ec2755e89d" class=""><strong>Total Addressable Market</strong></p><p id="3fe5e083-a085-4574-8754-cb73c53360f3" class="">Currently, organizations are largely using NFT’s to increase the perceived value of their wine and sell into new markets. Examples include <a href="https://www.penfolds.com/en-au/about-penfolds/collaborations/blockbar-third-nft.html">Penfolds</a> &amp; <a href="https://nft.robertmondaviwinery.com/pages/nft">Robert Mondavi</a> and reach as far as <a href="https://yaofamilywines.com/yao-family-wines-offers-the-first-napa-valley-wine-paired-with-nft-digital-collectible/">Yao Ming</a>’s vineyards. Whilst this could be a valid business opportunity, the total addressable market narrows down to individuals who are both Wine Enthusiasts and NFT Enthusiasts, both niche’s in wider industries.</p><p id="ee4b26bd-cb60-4180-afc7-368fbe5ee360" class=""><strong>Barriers of Entry</strong></p><p id="47d30273-ff1e-4976-968b-dff1b5470389" class="">Customers interviewed mentioned they purchased from the same trusted suppliers over 70% of the time, we can attest to this ourselves. Purchasing wine is rooted in trust and confidence with the supplier. We believe success in this market requires a “Cradle to grave” approach where vineyards are involved in the technology process from bottling, storage, trading, and finally delivery. Connections to vineyards and establishing trust represent a barrier of entry for new businesses, especially those that aim to disrupt an industry with new technology. </p><p id="afb6a81b-58cf-4e67-9e30-8a6d3de0002f" class=""><strong>Focusing on Solving Problems</strong></p><p id="925a4413-bb6f-47ff-9803-78365d1f55ec" class="">The biggest problems we saw in the current, archaic industry involve wine storage, wine tax, and tools to automate wine purchasing &amp; cellaring.</p><ul id="345d928f-5b57-41fc-8dfa-0058347ab6eb" class="bulleted-list"><li style="list-style-type:disc"><strong>Wine Storage:</strong> Owning and storing wine in optimum conditions is onerous. Companies like Blockbar store wines for the purchaser and use NFT’s as the digital certificate of ownership. Similarly, Vinovest and many other companies offer a similar service using traditional systems of ownership. NFT’s in this situation increases liquidity for ownership, however, this isn’t a clear and present problem to solve</li></ul><ul id="7f0354d9-68d3-4a96-b926-4f0f2d110bab" class="bulleted-list"><li style="list-style-type:disc"><strong>Wine Tax: </strong>many countries charge alcohol tax, in Australia this can represent 39% of the total sale price. Companies such as BBR in London store wine “In Bond” as an investment purchasable without paying tax. Wine can be stored and traded whilst in-bond and tax paid when the bottle is ready to be drunk. Due to international law, this isn’t a problem we can solve with blockchain</li></ul><ul id="d9949d64-abed-4825-8d60-11363124e100" class="bulleted-list"><li style="list-style-type:disc"><strong>Tools to Automate Wine Purchasing &amp; Cellaring:</strong> Cellar Tracker is a clear favourite, in-use by almost every customer we interviewed. There is room for a solution to assist in automating purchase to software, however, this isn’t a common problem and not worth pursuing</li></ul><p id="9e215314-cfc4-407a-83f9-1f89e8a6819f" class=""><strong>NFTs</strong></p><p id="ced680af-680b-42eb-98c5-c190216be33d" class="">Without a doubt, NFT’s are revolutionising industries. Infamous Twitter user @punk6529 wrote about this and their growing popularity &amp; utility in a thread in October 2021 <a href="https://twitter.com/punk6529/status/1443921334837338114">https://twitter.com/punk6529/status/1443921334837338114</a></p><p id="44ab5f94-c85e-43c3-8134-f484446dc5ce" class="">The image below, borrowed from the thread, demonstrates 6529’s thoughts on where the industry is heading. We’ve seen the beginning of growth through Gaming, Brands, Culture and the Metaverse and even companies experimenting with off-chain assets such as <a href="http://Blockbar.com">Blockbar.com</a>, <a href="http://Wiv.io">Wiv.io</a>, and <a href="http://Mattereum.com">Mattereum.com</a>, however, as identified through customer interviews, this doesn’t yet represent an opportunity to pursue at this point in time</p><figure id="abafa33c-3970-4409-b2c7-6226a33f387e" class="image"><a href="Palate%20abafa33c39704409b2c76226a33f387e/Untitled.png"><img style="width:1340px" src="Palate%20abafa33c39704409b2c76226a33f387e/Untitled.png"/></a></figure><p id="60f5074f-69fb-4240-8f72-10e94e925330" class="">
+</p><p id="ecfb275f-e015-4d00-a7f5-b68707c1acc7" class="">
+</p></div></article></body></html>
